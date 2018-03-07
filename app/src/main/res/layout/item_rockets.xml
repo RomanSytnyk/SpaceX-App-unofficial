@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="8dp"
+    card_view:cardCornerRadius="2dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/rocket"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:textColor="@android:color/black"
+            tools:text="Rocket Name" />
+
+        <TextView
+            android:id="@+id/status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Status" />
+
+        <TextView
+            android:id="@+id/costPerLaunch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Cost per launch" />
+
+        <TextView
+            android:id="@+id/rocketHeight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Height" />
+
+        <TextView
+            android:id="@+id/rocketDiameter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Diameter" />
+
+        <TextView
+            android:id="@+id/rocketMass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Mass" />
+
+        <TextView
+            android:id="@+id/stages"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Stages" />
+
+        <TextView
+            android:id="@+id/boosters"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Boosters" />
+
+        <TextView
+            android:id="@+id/firstStage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            tools:text="First stage" />
+
+        <TextView
+            android:id="@+id/secondStage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            tools:text="Second stage" />
+
+        <TextView
+            android:id="@+id/firstFlight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="firstFlight" />
+
+        <TextView
+            android:id="@+id/successRate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Success Rate" />
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            tools:text="Description" />
+
+
+    </LinearLayout>
+</android.support.v7.widget.CardView>

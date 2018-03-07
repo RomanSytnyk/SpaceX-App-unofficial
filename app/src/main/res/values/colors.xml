@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#212121</color>
+    <color name="colorPrimaryDark">#161616</color>
+    <color name="colorAccent">#212121</color>
+    <color name="colorSemitransparentWhite">#80FFFFFF</color>
+    <color name="colorSuccess">#4BB543</color>
+    <color name="colorFail">#FF0000</color>
+    <color name="colorLink">#2196F3</color>
+</resources>

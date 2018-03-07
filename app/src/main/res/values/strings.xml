@@ -1,0 +1,51 @@
+<resources>
+    <string name="app_name">SpaceX (unofficial)</string>
+
+    <string name="launches">Launches</string>
+    <string name="rockets">Rockets</string>
+    <string name="capsules">Capsules</string>
+    <string name="error">Error!</string>
+    <string name="future_launches">Future Launches</string>
+    <string name="past_launches">Past Launches</string>
+
+    <string name="status">Status: %s</string>
+    <string name="active">Active</string>
+    <string name="inactive">Not Active</string>
+    <string name="launch_success">Success</string>
+    <string name="launch_fail">Failed</string>
+
+    <!--Launches-->
+    <string name="launch_time"><b>Launch Time:</b></string>
+    <string name="launch_place"><b>Launch Place:</b></string>
+    <string name="launch_reddit_link">Reddit</string>
+    <string name="launch_article_link">Article</string>
+    <string name="launch_youtube_link">YouTube</string>
+    <string name="launch_first_stage"><b>First Stage:</b></string>
+    <string name="launch_second_stage"><b>Second Stage:</b></string>
+    <string name="launch_core_info">Core %s, flight %s (%s)\n</string>
+    <string name="launch_reused_core">reused</string>
+    <string name="launch_new_core">new</string>
+    <string name="launch_payload_info">%s (%s, %s kg, %s) - %s\n</string>
+    <string name="launch_unknown">\?</string>
+
+
+    <!--Rockets-->
+    <string name="rocket_cost_per_launch">Cost Per Launch: $%s</string>
+    <string name="rocket_height">Height: %s meters (%s feet)</string>
+    <string name="rocket_diameter">Diameter: %s meters (%s feet)</string>
+    <string name="rocket_mass">Mass: %s kg (%s lb)</string>
+    <string name="rocket_stages">Stages: %s</string>
+    <string name="rocket_boosters">Boosters: %s</string>
+    <string name="rocket_first_flight">First Flight: %s</string>
+    <string name="rocket_success_rate">Success Rate: %s%%</string>
+    <string name="rocket_first_stage_info">First Stage:\n -Engines: %s\n -Fuel: %s tons\n -Burn Time: %s sec%s</string>
+    <string name="rocket_first_stage_reuseable">\n -Reusable</string>
+    <string name="rocket_second_stage_info">Second Stage:\n -Engines: %s\n -Burn Time: %s sec</string>
+
+    <!--Capsule-->
+    <string name="capsule_crew">Crew: %s persons</string>
+    <string name="capsule_orbit_duration">Orbit Duration: %s years</string>
+    <string name="capsule_material">Heat Shield: %s (%s meters, %s°)</string>
+    <string name="capsule_sidewall_angle">Sidewall Angle: %s°</string>
+    <string name="capsule_launch_payload">Launch Payload: %s kg (%s lb), %s cubic meters</string>
+</resources>
