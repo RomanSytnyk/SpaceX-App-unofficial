@@ -5,6 +5,11 @@ import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
+@Parcelize
+data class LaunchesBunch(
+		val futureLaunches: List<Launch>?,
+		val pastLaunches: List<Launch>?
+): Parcelable
 
 @Parcelize
 data class Launch(

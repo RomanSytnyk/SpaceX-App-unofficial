@@ -1,42 +1,44 @@
 package romansytnyk.spacex.ui.capsules
 
-import com.arellomobile.mvp.InjectViewState
-import com.arellomobile.mvp.MvpPresenter
 import kotlinx.coroutines.experimental.async
 import kotlinx.coroutines.experimental.withContext
 import romansytnyk.spacex.App
 import romansytnyk.spacex.data.DataManager
+import romansytnyk.spacex.data.api.model.Capsule
+import romansytnyk.spacex.data.api.util.DataWrapper
+import romansytnyk.spacex.data.api.util.Failure
 import romansytnyk.spacex.util.CoroutineContextProvider
 import javax.inject.Inject
+
 
 /**
  * Created by Roman on 27.02.2018
  */
-@InjectViewState
-class CapsulesPresenter : MvpPresenter<ICapsulesView>(), ICapsulesPresenter {
+class CapsulesViewModel : ViewModel() {
     @Inject lateinit var dataManager: DataManager
     @Inject lateinit var pool: CoroutineContextProvider
+    var data: MutableLiveData<DataWrapper<List<Capsule>>> = MutableLiveData()
 
     init {
-        App.presenterComponent.inject(this)
+        App.viewModelComponent.inject(this)
     }
 
-    override fun fetchCapsules() {
-        viewState.showProgressBar()
+    fun fetchCapsules(): MutableLiveData<DataWrapper<List<Capsule>>> {
         async(pool.UI) {
             try {
                 val rockets = withContext(pool.IO) { dataManager.fetchCapsuleList().await() }
 
                 if (rockets.isSuccessful) {
-                    viewState.showCapsules(rockets.body())
+                    data.value = DataWrapper(rockets.body())
                 } else {
-                    viewState.showToast(rockets.message())
+                    data.value = DataWrapper(error = Failure.ServerError(rockets.message()))
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
-                viewState.showErrorToast()
+                data.value = DataWrapper(error = Failure.NetworkConnection())
             }
-            viewState.hideProgressBar()
         }
+
+        return data
     }
 }

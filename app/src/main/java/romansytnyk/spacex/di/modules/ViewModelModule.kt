@@ -11,7 +11,7 @@ import javax.inject.Singleton
  * Created by Roman on 18.02.2018
  */
 @Module
-class PresenterModule {
+class ViewModelModule {
     @Provides
     @Singleton
     internal fun provideDataManager(): DataManager {

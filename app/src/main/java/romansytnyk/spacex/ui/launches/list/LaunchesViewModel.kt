@@ -1,47 +1,46 @@
 package romansytnyk.spacex.ui.launches.list
 
-import com.arellomobile.mvp.InjectViewState
-import com.arellomobile.mvp.MvpPresenter
 import kotlinx.coroutines.experimental.async
 import kotlinx.coroutines.experimental.withContext
 import romansytnyk.spacex.App
 import romansytnyk.spacex.data.DataManager
+import romansytnyk.spacex.data.api.model.LaunchesBunch
+import romansytnyk.spacex.data.api.util.DataWrapper
+import romansytnyk.spacex.data.api.util.Failure
 import romansytnyk.spacex.util.CoroutineContextProvider
 import javax.inject.Inject
 
 /**
  * Created by Roman on 27.02.2018
  */
-@InjectViewState
-class LaunchesPresenter : MvpPresenter<ILaunchesView>(), ILaunchesPresenter {
+class LaunchesViewModel : ViewModel() {
     @Inject lateinit var dataManager: DataManager
     @Inject lateinit var pool: CoroutineContextProvider
+    var data: MutableLiveData<DataWrapper<LaunchesBunch>> = MutableLiveData()
 
     init {
-        App.presenterComponent.inject(this)
+        App.viewModelComponent.inject(this)
     }
 
-    override fun fetchLaunches() {
-        viewState.showProgressBar()
+    fun fetchLaunches(): MutableLiveData<DataWrapper<LaunchesBunch>> {
         async(pool.UI) {
             try {
                 val futureLaunches = withContext(pool.IO) { dataManager.fetchFutureLaunches().await() }
                 val pastLaunches = withContext(pool.IO) { dataManager.fetchAllPastLaunches().await() }
 
                 if (futureLaunches.isSuccessful && pastLaunches.isSuccessful) {
-                    viewState.showLaunches(futureLaunches.body(), pastLaunches.body())
+                    data.value = DataWrapper(LaunchesBunch(futureLaunches.body(), pastLaunches.body()))
                 } else if (futureLaunches.isSuccessful) {
-                    viewState.showLaunches(futureLaunches.body(), listOf())
-                    viewState.showToast(pastLaunches.message())
+                    data.value = DataWrapper(LaunchesBunch(futureLaunches.body(), listOf()))
                 } else if (pastLaunches.isSuccessful) {
-                    viewState.showLaunches(listOf(), pastLaunches.body())
-                    viewState.showToast(futureLaunches.message())
+                    data.value = DataWrapper(LaunchesBunch(listOf(), pastLaunches.body()))
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
-                viewState.showErrorToast()
+                data.value = DataWrapper(error = Failure.NetworkConnection())
             }
-            viewState.hideProgressBar()
         }
+
+        return data
     }
 }

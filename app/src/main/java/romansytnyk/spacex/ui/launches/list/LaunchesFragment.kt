@@ -6,7 +6,6 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.arellomobile.mvp.presenter.InjectPresenter
 import kotlinx.android.synthetic.main.fragment_list_data.*
 import romansytnyk.spacex.R
 import romansytnyk.spacex.data.api.model.Launch
@@ -16,8 +15,7 @@ import romansytnyk.spacex.ui.launches.list.adapter.LaunchesAdapter
 import romansytnyk.spacex.ui.launches.list.adapter.OnLaunchClicked
 
 
-class LaunchesFragment : BaseFragment(), ILaunchesView, OnLaunchClicked {
-    @InjectPresenter lateinit var presenter: LaunchesPresenter
+class LaunchesFragment : BaseFragment(), OnLaunchClicked {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_list_data, container, false)
@@ -26,23 +24,33 @@ class LaunchesFragment : BaseFragment(), ILaunchesView, OnLaunchClicked {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViews()
-        presenter.fetchLaunches()
+        fetchLaunches()
+    }
+
+    private fun fetchLaunches() {
+        showProgressBar()
+        val model = ViewModelProviders.of(this).get(LaunchesViewModel::class.java)
+        model.fetchLaunches().observe(this, Observer {
+            hideProgressBar()
+            it?.error?.let {
+                handleFailure(it)
+                return@Observer
+            }
+
+            it?.data.let {
+                recyclerView.adapter = LaunchesAdapter(
+                        it?.futureLaunches ?: listOf(),
+                        it?.pastLaunches ?: listOf(),
+                        this)
+            }
+        })
     }
 
     private fun initViews() {
         recyclerView.layoutManager = LinearLayoutManager(context)
     }
 
-    override fun showLaunches(futureLaunches: List<Launch>?, pastLaunches: List<Launch>?) {
-        recyclerView.adapter = LaunchesAdapter(
-                futureLaunches ?: listOf(),
-                pastLaunches ?: listOf(),
-                this)
-    }
-
     override fun onLaunchItemClicked(launch: Launch) {
         LaunchDetailsActivity.start(context, launch)
     }
-
-    override fun showErrorToast() = showToast(R.string.error)
 }

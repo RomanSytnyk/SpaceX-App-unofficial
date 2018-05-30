@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.support.annotation.StringRes
 import android.support.design.widget.Snackbar
+import android.support.v7.app.AppCompatActivity
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +12,8 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import android.widget.Toast
-import com.arellomobile.mvp.MvpAppCompatActivity
+import romansytnyk.spacex.R
+import romansytnyk.spacex.data.api.util.Failure
 import java.util.*
 
 
@@ -19,7 +21,7 @@ import java.util.*
  * Created by Roman on 18.02.2018
  */
 
-abstract class BaseActivity : MvpAppCompatActivity() {
+abstract class BaseActivity : AppCompatActivity() {
     private lateinit var rootView: View
     private var progressBar: ProgressBar? = null
 
@@ -43,6 +45,13 @@ abstract class BaseActivity : MvpAppCompatActivity() {
 
         layout.addView(rl, params)
         hideProgressBar()
+    }
+
+    fun handleFailure(failure: Failure?) {
+        when (failure) {
+            is Failure.NetworkConnection -> showSnackbar(R.string.error)
+            is Failure.ServerError -> showSnackbar(failure.message)
+        }
     }
 
     fun showProgressBar() {

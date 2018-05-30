@@ -25,11 +25,11 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        initBottomNavigationMenu(savedInstanceState)
+        initBottomNavigationMenu()
     }
 
     // Let me know, if you know a better solution without tons of code
-    private fun initBottomNavigationMenu(savedInstanceState: Bundle?) {
+    private fun initBottomNavigationMenu() {
         val launchesFragment = LaunchesFragment()
         val rocketsFragment = RocketsFragment()
         val capsulesFragment = CapsulesFragment()

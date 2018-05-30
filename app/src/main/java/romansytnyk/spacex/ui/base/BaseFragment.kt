@@ -3,20 +3,22 @@ package romansytnyk.spacex.ui.base
 import android.os.Bundle
 import android.support.annotation.StringRes
 import android.support.design.widget.Snackbar
+import android.support.v4.app.Fragment
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import android.widget.Toast
-import com.arellomobile.mvp.MvpAppCompatFragment
+import romansytnyk.spacex.R
+import romansytnyk.spacex.data.api.util.Failure
 import java.util.*
 
 /**
  * Created by Roman on 18.02.2018
  */
 
-abstract class BaseFragment : MvpAppCompatFragment() {
+abstract class BaseFragment : Fragment() {
     private lateinit var rootView: View
     private var progressBar: ProgressBar? = null
 
@@ -39,6 +41,13 @@ abstract class BaseFragment : MvpAppCompatFragment() {
 
         layout.addView(rl, params)
         hideProgressBar()
+    }
+
+    fun handleFailure(failure: Failure?) {
+        when (failure) {
+            is Failure.NetworkConnection -> showSnackbar(R.string.error)
+            is Failure.ServerError -> showSnackbar(failure.message)
+        }
     }
 
     fun showProgressBar() {

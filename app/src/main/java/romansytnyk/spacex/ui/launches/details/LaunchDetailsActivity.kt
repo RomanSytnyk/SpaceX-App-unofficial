@@ -13,9 +13,9 @@ import kotlinx.android.synthetic.main.activity_launch_details.*
 import romansytnyk.spacex.R
 import romansytnyk.spacex.data.api.model.Launch
 import romansytnyk.spacex.ui.base.BaseActivity
-import romansytnyk.spacex.util.formatLaunchDateToUserTimezone
 import romansytnyk.spacex.util.formatLaunchDateToNativeTimezone
 import romansytnyk.spacex.util.formatLaunchDateToUTC
+import romansytnyk.spacex.util.formatLaunchDateToUserTimezone
 
 class LaunchDetailsActivity : BaseActivity() {
     private lateinit var launch: Launch
