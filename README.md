@@ -5,7 +5,7 @@ Fan unofficial SpaceX Android App
 
 Libraries:
 - Android Support Library
-- Moxy (MVP)
+- Android Architecture Components
 - Glide
 - Retrofit 2 + Coroutines Adapter
 - Dagger 2
