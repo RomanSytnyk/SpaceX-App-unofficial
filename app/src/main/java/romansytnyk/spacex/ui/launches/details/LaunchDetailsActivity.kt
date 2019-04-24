@@ -5,7 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
+import androidx.core.content.ContextCompat
 import android.view.MenuItem
 import android.view.View
 import com.bumptech.glide.Glide
@@ -18,7 +18,7 @@ import romansytnyk.spacex.util.formatLaunchDateToUTC
 import romansytnyk.spacex.util.formatLaunchDateToUserTimezone
 
 class LaunchDetailsActivity : BaseActivity() {
-    private lateinit var launch: Launch
+    private lateinit var launchData: Launch
 
     companion object {
         private const val EXTRA_LAUNCH = "launch"
@@ -33,10 +33,10 @@ class LaunchDetailsActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_launch_details)
-        launch = intent.getParcelableExtra(EXTRA_LAUNCH)
+        launchData = intent.getParcelableExtra(EXTRA_LAUNCH)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        title = "${launch.rocket?.rocketName} (${launch.rocket?.rocketType})"
+        title = "${launchData.rocket?.rocketName} (${launchData.rocket?.rocketType})"
         initViews()
     }
 
@@ -49,18 +49,18 @@ class LaunchDetailsActivity : BaseActivity() {
 
     @SuppressLint("SetTextI18n")
     private fun initBaseInformation() {
-        startPlace.text = launch.launchSite?.siteNameLong
+        startPlace.text = launchData.launchSite?.siteNameLong
         time.text =
-                (launch.launchDateLocal ?: "").formatLaunchDateToNativeTimezone() + "\n" +
-                (launch.launchDateUtc ?: "").formatLaunchDateToUTC() + "\n" +
-                (launch.launchDateUtc ?: "").formatLaunchDateToUserTimezone()
+                (launchData.launchDateLocal ?: "").formatLaunchDateToNativeTimezone() + "\n" +
+                (launchData.launchDateUtc ?: "").formatLaunchDateToUTC() + "\n" +
+                (launchData.launchDateUtc ?: "").formatLaunchDateToUserTimezone()
 
-        launch.details?.let {
+        launchData.details?.let {
             description.visibility = View.VISIBLE
             description.text = it
         }
 
-        launch.launchSuccess?.let {
+        launchData.launchSuccess?.let {
             launchResult.visibility = View.VISIBLE
             if (it) {
                 launchResult.text = getText(R.string.launch_success)
@@ -75,7 +75,7 @@ class LaunchDetailsActivity : BaseActivity() {
     }
 
     private fun initLinks() {
-        launch.links?.missionPatch?.let {
+        launchData.links?.missionPatch?.let {
             if (it.isNotEmpty()) {
                 image.visibility = View.VISIBLE
                 Glide.with(this)
@@ -84,30 +84,30 @@ class LaunchDetailsActivity : BaseActivity() {
             }
         }
 
-        launch.links?.videoLink?.let {
+        launchData.links?.videoLink?.let {
             youtubeLink.visibility = View.VISIBLE
             youtubeLink.setOnClickListener {
-                openLink(launch.links?.videoLink)
+                openLink(launchData.links?.videoLink)
             }
         }
 
-        launch.links?.articleLink?.let {
+        launchData.links?.articleLink?.let {
             articleLink.visibility = View.VISIBLE
             articleLink.setOnClickListener {
-                openLink(launch.links?.articleLink)
+                openLink(launchData.links?.articleLink)
             }
         }
 
-        launch.links?.redditLink?.let {
+        launchData.links?.redditLink?.let {
             redditLink.visibility = View.VISIBLE
             redditLink.setOnClickListener {
-                openLink(launch.links?.redditLink)
+                openLink(launchData.links?.redditLink)
             }
         }
     }
 
     private fun initCores() {
-        val coreList = launch.rocket?.firstStage?.cores
+        val coreList = launchData.rocket?.firstStage?.cores
         coreList?.let {
             firstStage.visibility = View.VISIBLE
             cores.visibility = View.VISIBLE
@@ -133,7 +133,7 @@ class LaunchDetailsActivity : BaseActivity() {
     }
 
     private fun initPayloads() {
-        val payloadList = launch.rocket?.secondStage?.payloads
+        val payloadList = launchData.rocket?.secondStage?.payloads
         payloadList?.let {
             secondStage.visibility = View.VISIBLE
             payload.visibility = View.VISIBLE

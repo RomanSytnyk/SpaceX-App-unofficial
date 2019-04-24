@@ -1,7 +1,7 @@
 package romansytnyk.spacex.ui.rockets.adapter
 
-import android.support.annotation.StringRes
-import android.support.v7.widget.RecyclerView
+import androidx.annotation.StringRes
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +16,7 @@ import java.util.*
 /**
  * Created by Roman on 02.03.2018
  */
-class RocketsAdapter(private var rockets: List<Rocket>) : RecyclerView.Adapter<RocketsAdapter.RocketViewHolder>() {
+class RocketsAdapter(private var rockets: List<Rocket>) : androidx.recyclerview.widget.RecyclerView.Adapter<RocketsAdapter.RocketViewHolder>() {
 
     init {
         rockets = rockets.reversed()
@@ -33,7 +33,7 @@ class RocketsAdapter(private var rockets: List<Rocket>) : RecyclerView.Adapter<R
 
     override fun getItemCount(): Int = rockets.size
 
-    inner class RocketViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class RocketViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
         fun fillWith(item: Rocket) {
             itemView.rocket.text = item.name
             itemView.description.text = item.description

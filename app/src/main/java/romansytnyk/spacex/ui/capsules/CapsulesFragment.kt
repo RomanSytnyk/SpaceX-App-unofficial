@@ -1,20 +1,21 @@
 package romansytnyk.spacex.ui.capsules
 
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_list_data.*
+import org.koin.android.ext.android.inject
 import romansytnyk.spacex.R
 import romansytnyk.spacex.ui.base.BaseFragment
 import romansytnyk.spacex.ui.capsules.adapter.CapsulesAdapter
 
 
 class CapsulesFragment : BaseFragment() {
+    private val viewModel: CapsulesViewModel by inject()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_list_data, container, false)
@@ -28,8 +29,7 @@ class CapsulesFragment : BaseFragment() {
 
     private fun fetchCapsules() {
         showProgressBar()
-        val model = ViewModelProviders.of(this).get(CapsulesViewModel::class.java)
-        model.fetchCapsules().observe(this, Observer { capsules ->
+        viewModel.fetchCapsules().observe(this, Observer { capsules ->
             capsules?.data?.let { recyclerView.adapter = CapsulesAdapter(it) } ?: handleFailure(capsules?.error)
             hideProgressBar()
         })

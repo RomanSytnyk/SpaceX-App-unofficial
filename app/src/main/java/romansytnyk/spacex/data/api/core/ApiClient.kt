@@ -15,8 +15,8 @@ import java.util.concurrent.TimeUnit
 private const val BASE_URL = "https://api.spacexdata.com"
 
 class ApiClient {
-    private val mRequests: Requests
-    var bankApi: Api
+    private val requests: Requests
+    var spacexApi: Api
 
     init {
         val okHttpClient = OkHttpClient().newBuilder()
@@ -32,8 +32,8 @@ class ApiClient {
                 .baseUrl(BASE_URL)
                 .build()
 
-        mRequests = retrofit.create(Requests::class.java)
-        bankApi = Api(mRequests)
+        requests = retrofit.create(Requests::class.java)
+        spacexApi = Api(requests)
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////

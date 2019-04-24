@@ -10,7 +10,7 @@ import java.util.*
 fun String.formatLaunchDateToUserTimezone(): String {
     var convertedDate = ""
     try {
-        val utcFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault())
+        val utcFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX", Locale.getDefault())
         utcFormat.timeZone = TimeZone.getTimeZone("UTC")
         val utcDate = utcFormat.parse(this)
 
@@ -31,7 +31,7 @@ fun String.formatLaunchDateToUserTimezone(): String {
 fun String.formatLaunchDateToUTC(): String {
     var convertedDate = ""
     try {
-        val utcFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault())
+        val utcFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
         val utcDate = utcFormat.parse(this)
         val currentFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
         convertedDate = currentFormat.format(utcDate) + " (GMT)"

@@ -1,8 +1,8 @@
 package romansytnyk.spacex.ui
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatActivity
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_main.*
 import romansytnyk.spacex.R
@@ -13,7 +13,7 @@ import romansytnyk.spacex.ui.rockets.RocketsFragment
 private const val RESTORE_CURRENT_TAB = "current tab"
 
 class MainActivity : AppCompatActivity() {
-    private var currentFragment: Fragment? = null
+    private var currentFragment: androidx.fragment.app.Fragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun addAndHideFragment(fragment: Fragment) {
+    private fun addAndHideFragment(fragment: androidx.fragment.app.Fragment) {
         supportFragmentManager
                 .beginTransaction()
                 .add(R.id.container, fragment)
@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity() {
                 .commit()
     }
 
-    private fun showFragment(fragment: Fragment) {
+    private fun showFragment(fragment: androidx.fragment.app.Fragment) {
         supportFragmentManager.
                 beginTransaction()
                 .hide(currentFragment!!)

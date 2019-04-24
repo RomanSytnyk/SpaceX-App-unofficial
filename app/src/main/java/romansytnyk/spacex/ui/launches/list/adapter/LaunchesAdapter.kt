@@ -1,9 +1,9 @@
 package romansytnyk.spacex.ui.launches.list.adapter
 
 import android.annotation.SuppressLint
-import android.support.annotation.StringRes
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.RecyclerView
+import androidx.annotation.StringRes
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,7 +20,7 @@ import romansytnyk.spacex.util.formatLaunchDateToNativeTimezone
  */
 class LaunchesAdapter(private var futureLaunches: List<Launch>,
                       private var pastLaunches: List<Launch>,
-                      private var listener: OnLaunchClicked) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+                      private var listener: OnLaunchClicked) : androidx.recyclerview.widget.RecyclerView.Adapter<androidx.recyclerview.widget.RecyclerView.ViewHolder>() {
     private val allLaunches: List<Launch>
 
     companion object {
@@ -35,7 +35,7 @@ class LaunchesAdapter(private var futureLaunches: List<Launch>,
         allLaunches = futureLaunches + pastLaunches
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): androidx.recyclerview.widget.RecyclerView.ViewHolder {
         return when (viewType) {
             TYPE_TITLE_PAST -> {
                 val v = LayoutInflater.from(parent.context).inflate(R.layout.item_launches_title, parent, false)
@@ -74,7 +74,7 @@ class LaunchesAdapter(private var futureLaunches: List<Launch>,
     }
 
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: androidx.recyclerview.widget.RecyclerView.ViewHolder, position: Int) {
         when (holder.itemViewType) {
             TYPE_TITLE_FUTURE -> (holder as TitleViewHolder).fillWith(R.string.future_launches)
             TYPE_TITLE_PAST -> (holder as TitleViewHolder).fillWith(R.string.past_launches)
@@ -92,7 +92,7 @@ class LaunchesAdapter(private var futureLaunches: List<Launch>,
         return size
     }
 
-    inner class LaunchViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class LaunchViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
 
         @SuppressLint("SetTextI18n")
         fun fillWith(item: Launch) {
@@ -141,7 +141,7 @@ class LaunchesAdapter(private var futureLaunches: List<Launch>,
         }
     }
 
-    inner class TitleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class TitleViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
         fun fillWith(@StringRes id: Int) {
             val title: TextView = itemView.findViewById(R.id.title)
             title.setText(id)

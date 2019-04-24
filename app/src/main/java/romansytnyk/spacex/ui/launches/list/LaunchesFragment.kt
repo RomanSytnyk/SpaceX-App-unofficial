@@ -1,14 +1,14 @@
 package romansytnyk.spacex.ui.launches.list
 
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_list_data.*
+import org.koin.android.ext.android.inject
 import romansytnyk.spacex.R
 import romansytnyk.spacex.data.api.model.Launch
 import romansytnyk.spacex.ui.base.BaseFragment
@@ -18,6 +18,7 @@ import romansytnyk.spacex.ui.launches.list.adapter.OnLaunchClicked
 
 
 class LaunchesFragment : BaseFragment(), OnLaunchClicked {
+    private val viewModel: LaunchesViewModel by inject()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_list_data, container, false)
@@ -31,8 +32,7 @@ class LaunchesFragment : BaseFragment(), OnLaunchClicked {
 
     private fun fetchLaunches() {
         showProgressBar()
-        val model = ViewModelProviders.of(this).get(LaunchesViewModel::class.java)
-        model.fetchLaunches().observe(this, Observer { launches ->
+        viewModel.fetchLaunches().observe(this, Observer { launches ->
             hideProgressBar()
             launches?.error?.let {
                 handleFailure(it)

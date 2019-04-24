@@ -1,9 +1,9 @@
 package romansytnyk.spacex.ui.base
 
 import android.os.Bundle
-import android.support.annotation.StringRes
-import android.support.design.widget.Snackbar
-import android.support.v4.app.Fragment
+import androidx.annotation.StringRes
+import com.google.android.material.snackbar.Snackbar
+import androidx.fragment.app.Fragment
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
@@ -18,7 +18,7 @@ import java.util.*
  * Created by Roman on 18.02.2018
  */
 
-abstract class BaseFragment : Fragment() {
+abstract class BaseFragment : androidx.fragment.app.Fragment() {
     private lateinit var rootView: View
     private var progressBar: ProgressBar? = null
 

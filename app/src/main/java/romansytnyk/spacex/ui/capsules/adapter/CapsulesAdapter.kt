@@ -1,8 +1,8 @@
 package romansytnyk.spacex.ui.capsules.adapter
 
 import android.annotation.SuppressLint
-import android.support.annotation.StringRes
-import android.support.v7.widget.RecyclerView
+import androidx.annotation.StringRes
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +14,7 @@ import romansytnyk.spacex.data.api.model.Capsule
 /**
  * Created by Roman on 02.03.2018
  */
-class CapsulesAdapter(private var capsules: List<Capsule>) : RecyclerView.Adapter<CapsulesAdapter.RocketViewHolder>() {
+class CapsulesAdapter(private var capsules: List<Capsule>) : androidx.recyclerview.widget.RecyclerView.Adapter<CapsulesAdapter.RocketViewHolder>() {
 
     init {
         capsules = capsules.reversed()
@@ -31,7 +31,7 @@ class CapsulesAdapter(private var capsules: List<Capsule>) : RecyclerView.Adapte
 
     override fun getItemCount(): Int = capsules.size
 
-    inner class RocketViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class RocketViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
         @SuppressLint("SetTextI18n")
         fun fillWith(item: Capsule) {
             itemView.name.text = item.name
