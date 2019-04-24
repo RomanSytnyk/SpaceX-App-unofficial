@@ -1,13 +1,12 @@
 package romansytnyk.spacex.ui.launches.list.adapter
 
 import android.annotation.SuppressLint
-import androidx.annotation.StringRes
-import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.annotation.StringRes
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_launches.view.*
 import romansytnyk.spacex.R
@@ -20,7 +19,7 @@ import romansytnyk.spacex.util.formatLaunchDateToNativeTimezone
  */
 class LaunchesAdapter(private var futureLaunches: List<Launch>,
                       private var pastLaunches: List<Launch>,
-                      private var listener: OnLaunchClicked) : androidx.recyclerview.widget.RecyclerView.Adapter<androidx.recyclerview.widget.RecyclerView.ViewHolder>() {
+                      private var listener: OnLaunchItemClicked) : androidx.recyclerview.widget.RecyclerView.Adapter<androidx.recyclerview.widget.RecyclerView.ViewHolder>() {
     private val allLaunches: List<Launch>
 
     companion object {
@@ -99,18 +98,21 @@ class LaunchesAdapter(private var futureLaunches: List<Launch>,
             itemView.rocket.text = "${item.flightNumber}. ${item.rocket?.rocketName} (${item.rocket?.rocketType})"
             itemView.time.text = (item.launchDateLocal ?: "").formatLaunchDateToNativeTimezone()
 
+            // Launch Place
             itemView.startPlace.visibility = View.GONE
             item.launchSite?.siteNameLong?.let {
                 itemView.startPlace.text = it
                 itemView.startPlace.visibility = View.VISIBLE
             }
 
+            // Details
             itemView.description.visibility = View.GONE
             item.details?.let {
                 itemView.description.text = it
                 itemView.description.visibility = View.VISIBLE
             }
 
+            // Image
             itemView.image.visibility = View.GONE
             item.links?.missionPatch?.let {
                 if (it.isNotEmpty()) {
@@ -121,6 +123,7 @@ class LaunchesAdapter(private var futureLaunches: List<Launch>,
                 }
             }
 
+            // Result
             itemView.launchResult.visibility = View.GONE
             item.launchSuccess?.let {
                 itemView.launchResult.visibility = View.VISIBLE

@@ -1,10 +1,8 @@
 package romansytnyk.spacex.ui.base
 
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
-import androidx.annotation.StringRes
-import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +10,9 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import android.widget.Toast
+import androidx.annotation.StringRes
+import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.snackbar.Snackbar
 import romansytnyk.spacex.R
 import romansytnyk.spacex.data.api.util.Failure
 import java.util.*
@@ -87,13 +88,11 @@ abstract class BaseActivity : AppCompatActivity() {
 
     @Suppress("DEPRECATION")
     fun currentLocale(): Locale {
-        val current: Locale = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             // Android N can have a few locales
             resources.configuration.locales.get(0)
         } else {
             resources.configuration.locale
         }
-
-        return current
     }
 }

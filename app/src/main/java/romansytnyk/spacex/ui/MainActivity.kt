@@ -1,9 +1,8 @@
 package romansytnyk.spacex.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.appcompat.app.AppCompatActivity
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import romansytnyk.spacex.R
 import romansytnyk.spacex.ui.capsules.CapsulesFragment

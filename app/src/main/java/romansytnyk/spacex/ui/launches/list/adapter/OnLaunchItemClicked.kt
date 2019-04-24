@@ -5,6 +5,6 @@ import romansytnyk.spacex.data.api.model.Launch
 /**
  * Created by Roman on 04.03.2018
  */
-interface OnLaunchClicked {
+interface OnLaunchItemClicked {
     fun onLaunchItemClicked(launch: Launch)
 }

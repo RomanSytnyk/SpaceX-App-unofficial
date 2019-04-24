@@ -1,11 +1,11 @@
 package romansytnyk.spacex.ui.rockets
 
-import androidx.lifecycle.Observer
 import android.os.Bundle
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_list_data.*
 import org.koin.android.ext.android.inject
 import romansytnyk.spacex.R

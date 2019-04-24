@@ -1,10 +1,9 @@
 package romansytnyk.spacex.ui.rockets.adapter
 
-import androidx.annotation.StringRes
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.StringRes
 import kotlinx.android.synthetic.main.item_rockets.view.*
 import romansytnyk.spacex.R
 import romansytnyk.spacex.data.api.model.Rocket
@@ -42,6 +41,7 @@ class RocketsAdapter(private var rockets: List<Rocket>) : androidx.recyclerview.
             itemView.firstFlight.text = String.format(getString(R.string.rocket_first_flight), item.firstFlight)
             itemView.successRate.text = String.format(getString(R.string.rocket_success_rate), item.successRatePct)
 
+            // Params
             itemView.rocketHeight.text = String.format(
                     getString(R.string.rocket_height),
                     item.height?.meters,
@@ -58,6 +58,7 @@ class RocketsAdapter(private var rockets: List<Rocket>) : androidx.recyclerview.
                     getString(R.string.rocket_cost_per_launch),
                     formatCost(item.costPerLaunch ?: 0))
 
+            // First Stage
             itemView.firstStage.visibility = View.GONE
             item.firstStage?.let {
                 itemView.firstStage.visibility = View.VISIBLE
@@ -68,6 +69,7 @@ class RocketsAdapter(private var rockets: List<Rocket>) : androidx.recyclerview.
                         if (it.reusable == true) getString(R.string.rocket_first_stage_reuseable) else "")
             }
 
+            // Second Stage
             itemView.secondStage.visibility = View.GONE
             item.secondStage?.let {
                 itemView.secondStage.visibility = View.VISIBLE
@@ -76,6 +78,7 @@ class RocketsAdapter(private var rockets: List<Rocket>) : androidx.recyclerview.
                         it.burnTimeSec?.toInt())
             }
 
+            // Status
             item.active?.let {
                 if (it) {
                     itemView.status.text = String.format(

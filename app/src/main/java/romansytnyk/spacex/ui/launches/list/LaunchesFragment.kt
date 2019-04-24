@@ -1,12 +1,12 @@
 package romansytnyk.spacex.ui.launches.list
 
 
-import androidx.lifecycle.Observer
 import android.os.Bundle
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_list_data.*
 import org.koin.android.ext.android.inject
 import romansytnyk.spacex.R
@@ -14,10 +14,10 @@ import romansytnyk.spacex.data.api.model.Launch
 import romansytnyk.spacex.ui.base.BaseFragment
 import romansytnyk.spacex.ui.launches.details.LaunchDetailsActivity
 import romansytnyk.spacex.ui.launches.list.adapter.LaunchesAdapter
-import romansytnyk.spacex.ui.launches.list.adapter.OnLaunchClicked
+import romansytnyk.spacex.ui.launches.list.adapter.OnLaunchItemClicked
 
 
-class LaunchesFragment : BaseFragment(), OnLaunchClicked {
+class LaunchesFragment : BaseFragment(), OnLaunchItemClicked {
     private val viewModel: LaunchesViewModel by inject()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

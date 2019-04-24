@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import romansytnyk.spacex.App
 import romansytnyk.spacex.data.DataManager
 import romansytnyk.spacex.data.api.model.Capsule
 import romansytnyk.spacex.data.api.util.DataWrapper

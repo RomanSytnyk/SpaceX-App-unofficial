@@ -33,6 +33,7 @@ fun String.formatLaunchDateToUTC(): String {
     try {
         val utcFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
         val utcDate = utcFormat.parse(this)
+
         val currentFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
         convertedDate = currentFormat.format(utcDate) + " (GMT)"
     } catch (e: Exception) {
