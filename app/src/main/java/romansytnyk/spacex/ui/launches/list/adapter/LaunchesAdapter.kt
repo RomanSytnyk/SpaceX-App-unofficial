@@ -113,7 +113,7 @@ class LaunchesAdapter(private var futureLaunches: List<Launch>,
 
             itemView.image.visibility = View.GONE
             item.links?.missionPatch?.let {
-                if (!it.isEmpty()) {
+                if (it.isNotEmpty()) {
                     Glide.with(itemView.context)
                             .load(it)
                             .into(itemView.image)

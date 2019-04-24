@@ -1,7 +1,7 @@
 package romansytnyk.spacex.data
 
 
-import kotlinx.coroutines.experimental.Deferred
+import kotlinx.coroutines.Deferred
 import retrofit2.Response
 import romansytnyk.spacex.App
 import romansytnyk.spacex.data.api.Api
@@ -15,7 +15,7 @@ import romansytnyk.spacex.data.api.model.Rocket
 class DataManager : IDataManager {
     private val api: Api = App.dataManagerComponent.api()
 
-    override fun fetchAllPastLaunches():  Deferred<Response<List<Launch>>> {
+    override fun fetchAllPastLaunches(): Deferred<Response<List<Launch>>> {
         return api.fetchAllPastLaunches()
     }
 

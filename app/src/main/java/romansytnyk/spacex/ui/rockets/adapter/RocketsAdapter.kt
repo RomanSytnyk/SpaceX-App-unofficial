@@ -22,12 +22,12 @@ class RocketsAdapter(private var rockets: List<Rocket>) : RecyclerView.Adapter<R
         rockets = rockets.reversed()
     }
     
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RocketsAdapter.RocketViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RocketViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.item_rockets, parent, false)
         return RocketViewHolder(v)
     }
 
-    override fun onBindViewHolder(holder: RocketsAdapter.RocketViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RocketViewHolder, position: Int) {
         holder.fillWith(rockets[position])
     }
 

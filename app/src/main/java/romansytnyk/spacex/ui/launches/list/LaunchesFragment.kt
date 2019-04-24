@@ -32,14 +32,14 @@ class LaunchesFragment : BaseFragment(), OnLaunchClicked {
     private fun fetchLaunches() {
         showProgressBar()
         val model = ViewModelProviders.of(this).get(LaunchesViewModel::class.java)
-        model.fetchLaunches().observe(this, Observer {
+        model.fetchLaunches().observe(this, Observer { launches ->
             hideProgressBar()
-            it?.error?.let {
+            launches?.error?.let {
                 handleFailure(it)
                 return@Observer
             }
 
-            it?.data.let {
+            launches?.data.let {
                 recyclerView.adapter = LaunchesAdapter(
                         it?.futureLaunches ?: listOf(),
                         it?.pastLaunches ?: listOf(),

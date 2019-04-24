@@ -20,12 +20,12 @@ class CapsulesAdapter(private var capsules: List<Capsule>) : RecyclerView.Adapte
         capsules = capsules.reversed()
     }
     
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CapsulesAdapter.RocketViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RocketViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.item_capsules, parent, false)
         return RocketViewHolder(v)
     }
 
-    override fun onBindViewHolder(holder: CapsulesAdapter.RocketViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RocketViewHolder, position: Int) {
         holder.fillWith(capsules[position])
     }
 

@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity() {
     private fun showFragment(fragment: Fragment) {
         supportFragmentManager.
                 beginTransaction()
-                .hide(currentFragment)
+                .hide(currentFragment!!)
                 .show(fragment)
                 .commit()
         currentFragment = fragment

@@ -2,14 +2,14 @@ package romansytnyk.spacex.ui.capsules
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import kotlinx.coroutines.experimental.async
-import kotlinx.coroutines.experimental.withContext
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import romansytnyk.spacex.App
 import romansytnyk.spacex.data.DataManager
 import romansytnyk.spacex.data.api.model.Capsule
 import romansytnyk.spacex.data.api.util.DataWrapper
 import romansytnyk.spacex.data.api.util.Failure
-import romansytnyk.spacex.util.CoroutineContextProvider
 import javax.inject.Inject
 
 
@@ -18,7 +18,6 @@ import javax.inject.Inject
  */
 class CapsulesViewModel : ViewModel() {
     @Inject lateinit var dataManager: DataManager
-    @Inject lateinit var pool: CoroutineContextProvider
     var data: MutableLiveData<DataWrapper<List<Capsule>>> = MutableLiveData()
 
     init {
@@ -26,18 +25,18 @@ class CapsulesViewModel : ViewModel() {
     }
 
     fun fetchCapsules(): MutableLiveData<DataWrapper<List<Capsule>>> {
-        async(pool.UI) {
+        GlobalScope.launch(Dispatchers.IO) {
             try {
-                val rockets = withContext(pool.IO) { dataManager.fetchCapsuleList().await() }
+                val rockets = dataManager.fetchCapsuleList().await()
 
                 if (rockets.isSuccessful) {
-                    data.value = DataWrapper(rockets.body())
+                    data.postValue(DataWrapper(rockets.body()))
                 } else {
-                    data.value = DataWrapper(error = Failure.ServerError(rockets.message()))
+                    data.postValue(DataWrapper(error = Failure.ServerError(rockets.message())))
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
-                data.value = DataWrapper(error = Failure.NetworkConnection())
+                data.postValue(DataWrapper(error = Failure.NetworkConnection()))
             }
         }
 

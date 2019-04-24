@@ -76,7 +76,7 @@ class LaunchDetailsActivity : BaseActivity() {
 
     private fun initLinks() {
         launch.links?.missionPatch?.let {
-            if (!it.isEmpty()) {
+            if (it.isNotEmpty()) {
                 image.visibility = View.VISIBLE
                 Glide.with(this)
                         .load(it)

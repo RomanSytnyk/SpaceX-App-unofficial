@@ -29,8 +29,8 @@ class RocketsFragment : BaseFragment() {
     private fun fetchRockets() {
         showProgressBar()
         val model = ViewModelProviders.of(this).get(RocketsViewModel::class.java)
-        model.fetchLaunches().observe(this, Observer {
-            it?.data?.let { recyclerView.adapter = RocketsAdapter(it) } ?: handleFailure(it?.error)
+        model.fetchLaunches().observe(this, Observer { launches ->
+            launches?.data?.let { recyclerView.adapter = RocketsAdapter(it) } ?: handleFailure(launches?.error)
             hideProgressBar()
         })
     }

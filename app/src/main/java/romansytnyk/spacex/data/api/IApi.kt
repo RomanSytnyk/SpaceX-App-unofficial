@@ -1,6 +1,6 @@
 package romansytnyk.spacex.data.api
 
-import kotlinx.coroutines.experimental.Deferred
+import kotlinx.coroutines.Deferred
 import retrofit2.Response
 import romansytnyk.spacex.data.api.model.Capsule
 import romansytnyk.spacex.data.api.model.Launch

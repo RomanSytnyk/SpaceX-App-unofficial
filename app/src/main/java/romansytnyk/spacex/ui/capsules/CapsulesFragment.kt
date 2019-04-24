@@ -29,8 +29,8 @@ class CapsulesFragment : BaseFragment() {
     private fun fetchCapsules() {
         showProgressBar()
         val model = ViewModelProviders.of(this).get(CapsulesViewModel::class.java)
-        model.fetchCapsules().observe(this, Observer {
-            it?.data?.let { recyclerView.adapter = CapsulesAdapter(it) } ?: handleFailure(it?.error)
+        model.fetchCapsules().observe(this, Observer { capsules ->
+            capsules?.data?.let { recyclerView.adapter = CapsulesAdapter(it) } ?: handleFailure(capsules?.error)
             hideProgressBar()
         })
     }
