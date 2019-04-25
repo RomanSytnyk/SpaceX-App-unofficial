@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import romansytnyk.spacex.R
 import romansytnyk.spacex.data.api.util.Failure
+import romansytnyk.spacex.util.Utils
 import java.util.*
 
 
@@ -50,7 +51,9 @@ abstract class BaseActivity : AppCompatActivity() {
 
     fun handleFailure(failure: Failure?) {
         when (failure) {
-            is Failure.NetworkConnection -> showSnackbar(R.string.error)
+            is Failure.NetworkConnection -> {
+                if (Utils.isOnline(this)) showSnackbar(R.string.error)
+            }
             is Failure.ServerError -> showSnackbar(failure.message)
         }
     }

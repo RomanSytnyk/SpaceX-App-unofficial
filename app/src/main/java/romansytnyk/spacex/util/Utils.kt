@@ -1,5 +1,7 @@
 package romansytnyk.spacex.util
 
+import android.content.Context
+import android.net.ConnectivityManager
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -7,6 +9,14 @@ import java.util.*
 /**
  * Created by Roman on 03.03.2018
  */
+object Utils {
+    fun isOnline(context: Context?): Boolean {
+        val connectivityManager = context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val networkInfo = connectivityManager.activeNetworkInfo
+        return networkInfo != null && networkInfo.isConnected
+    }
+}
+
 fun String.formatLaunchDateToUserTimezone(): String {
     var convertedDate = ""
     try {

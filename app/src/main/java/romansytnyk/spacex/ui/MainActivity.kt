@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = getString(R.string.app_name)
         savedInstanceState?.let {
             for (fragment in supportFragmentManager.fragments) {
                 supportFragmentManager.beginTransaction().remove(fragment).commit()
