@@ -8,7 +8,8 @@ Libraries:
 - Android Architecture Components
 - Glide
 - Retrofit 2 + Coroutines Adapter
-- Dagger 2
+- Koin
+- AndroidYouTubePlayer
 
 ![Launches List](https://image.ibb.co/nc9w7n/Screenshot_2018_03_07_22_12_52_849_romansytnyk_spacex.png)    ![Launch](https://image.ibb.co/n7EUSn/Screenshot_2018_03_07_22_13_33_713_romansytnyk_spacex.png)
 
@@ -20,7 +21,7 @@ Libraries:
 ```
 SpaceX Unofficial Android App
 
-Copyright (c) 2018 Roman Sytnyk
+Copyright (c) 2019 Roman Sytnyk
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
