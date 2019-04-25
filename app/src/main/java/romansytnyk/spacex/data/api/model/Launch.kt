@@ -23,7 +23,9 @@ data class Launch(
 		@SerializedName("launch_site") val launchSite: LaunchSite?,
 		@SerializedName("launch_success") val launchSuccess: Boolean?,
 		@SerializedName("links") val links: Links?,
-		@SerializedName("details") val details: String?
+		@SerializedName("details") val details: String?,
+		@SerializedName("mission_name") val missionName: String?,
+		@SerializedName("mission_id") val missionId: List<String>?
 ) : Parcelable
 
 @Parcelize
@@ -47,7 +49,8 @@ data class Links(
 		@SerializedName("mission_patch") val missionPatch: String?,
 		@SerializedName("article_link") val articleLink: String?,
 		@SerializedName("video_link") val videoLink: String?,
-		@SerializedName("reddit_campaign") val redditLink: String?
+		@SerializedName("reddit_campaign") val redditLink: String?,
+		@SerializedName("youtube_id") val youTubeId: String?
 ) : Parcelable
 
 @Parcelize

@@ -80,7 +80,7 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     fun hideSoftKeyboard() {
-        if (currentFocus != null) {
+        currentFocus?.let {
             val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             inputMethodManager.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
         }

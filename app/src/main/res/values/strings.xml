@@ -5,8 +5,8 @@
     <string name="rockets">Rockets</string>
     <string name="capsules">Capsules</string>
     <string name="error">Error!</string>
-    <string name="future_launches">Future Launches</string>
-    <string name="past_launches">Past Launches</string>
+    <string name="future_launches"><b>Future Launches</b></string>
+    <string name="past_launches"><b>Past Launches</b></string>
 
     <string name="status">Status: %s</string>
     <string name="active">Active</string>
@@ -27,7 +27,9 @@
     <string name="launch_new_core">new</string>
     <string name="launch_payload_info">%s (%s, %s kg, %s) - %s\n</string>
     <string name="launch_unknown">\?</string>
-
+    <string name="launch_flight_num">Flight Number: %s</string>
+    <string name="launch_mission">Mission: %s</string>
+    <string name="launch_info"><b>Info:</b></string>
 
     <!--Rockets-->
     <string name="rocket_cost_per_launch">Cost Per Launch: $%s</string>
