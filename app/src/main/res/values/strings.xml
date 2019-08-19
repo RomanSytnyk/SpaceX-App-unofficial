@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">SpaceX Launches (unofficial)</string>
-    <string name="app_name_launcher">SpaceX</string>
+    <string name="app_name_launcher">Rocket Launches</string>
 
     <string name="launches">Launches</string>
     <string name="rockets">Rockets</string>
@@ -53,8 +53,6 @@
     <string name="capsule_launch_payload">Launch Payload: %s kg (%s lb), %s cubic meters</string>
     <string name="no_internet">Lost internet connection.</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="past">Past</string>
     <string name="future">Future</string>
 </resources>

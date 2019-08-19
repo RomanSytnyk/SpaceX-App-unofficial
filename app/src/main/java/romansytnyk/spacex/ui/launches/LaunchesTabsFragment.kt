@@ -20,6 +20,7 @@ class LaunchesTabsFragment : Fragment() {
 
         val pagerAdapter = LaunchesPagerAdapter(fragmentManager, view.context)
         viewPager.adapter = pagerAdapter
+        tabLayout.isTabIndicatorFullWidth = false
         tabLayout.setupWithViewPager(viewPager)
     }
 }
