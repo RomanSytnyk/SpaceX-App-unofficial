@@ -18,6 +18,7 @@ import romansytnyk.spacex.ui.launches.list.adapter.LaunchesAdapter
 import romansytnyk.spacex.ui.launches.list.adapter.OnLaunchItemClicked
 import romansytnyk.spacex.util.Utils
 
+const val IS_FUTURE = "is_future"
 
 class LaunchesFragment : BaseFragment(), OnLaunchItemClicked {
     private val viewModel: LaunchesViewModel by inject()
@@ -29,12 +30,12 @@ class LaunchesFragment : BaseFragment(), OnLaunchItemClicked {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViews()
+        initObservers()
         fetchLaunches()
     }
 
-    private fun fetchLaunches() {
-        showProgressBar()
-        viewModel.fetchLaunches().observe(this, Observer { launches ->
+    private fun initObservers() {
+        viewModel.data.observe(this, Observer { launches ->
             hideProgressBar()
             launches?.error?.let {
                 handleFailure(it)
@@ -43,11 +44,22 @@ class LaunchesFragment : BaseFragment(), OnLaunchItemClicked {
 
             launches?.data.let {
                 recyclerView.adapter = LaunchesAdapter(
-                        it?.futureLaunches ?: listOf(),
-                        it?.pastLaunches ?: listOf(),
+                        it ?: listOf(),
                         this)
             }
         })
+    }
+
+    private fun fetchLaunches() {
+        showProgressBar()
+
+        // Decide what launches to fetch
+        val isFutureLaunchesToFetch = arguments?.getBoolean(IS_FUTURE) ?: false
+        if (isFutureLaunchesToFetch) {
+            viewModel.fetchFutureLaunches()
+        } else {
+            viewModel.fetchPastLaunches()
+        }
     }
 
     private fun initViews() {

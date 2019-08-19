@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import romansytnyk.spacex.R
 import romansytnyk.spacex.ui.capsules.CapsulesFragment
-import romansytnyk.spacex.ui.launches.list.LaunchesFragment
+import romansytnyk.spacex.ui.launches.LaunchesTabsFragment
 import romansytnyk.spacex.ui.rockets.RocketsFragment
 
 private const val RESTORE_CURRENT_TAB = "current tab"
@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
 
     // Let me know, if you know a better solution without tons of code
     private fun initBottomNavigationMenu() {
-        val launchesFragment = LaunchesFragment()
+        val launchesFragment = LaunchesTabsFragment()
         val rocketsFragment = RocketsFragment()
         val capsulesFragment = CapsulesFragment()
 
