@@ -1,5 +1,5 @@
 # SpaceX-App-unofficial
-Fan unofficial SpaceX Android App
+Unofficial SpaceX Android App - Rocket Launches.
 
 **The repository is open for suggestions and improvements.**
 
@@ -11,9 +11,9 @@ Libraries:
 - Koin
 - AndroidYouTubePlayer
 
-![Launches List](https://image.ibb.co/nc9w7n/Screenshot_2018_03_07_22_12_52_849_romansytnyk_spacex.png)    ![Launch](https://image.ibb.co/n7EUSn/Screenshot_2018_03_07_22_13_33_713_romansytnyk_spacex.png)
+![Launches List](https://i.ibb.co/DGTDbw4/photo-2019-08-19-16-14-47.jpg)    ![Launch](https://i.ibb.co/JQTGXw2/photo-2019-08-19-16-14-48.jpg)
 
-### Get it on [Google Play](https://play.google.com/store/apps/details?id=romansytnyk.spacex)
+### Get it on [Google Play](https://play.google.com/store/apps/details?id=romansytnyk.spacexlaunches&rdid=romansytnyk.spacexlaunches)
 
 
 ## License
