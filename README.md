@@ -13,7 +13,7 @@ Libraries:
 
 ![Launches List](https://i.ibb.co/DGTDbw4/photo-2019-08-19-16-14-47.jpg)    ![Launch](https://i.ibb.co/JQTGXw2/photo-2019-08-19-16-14-48.jpg)
 
-### Get it on [Google Play](https://play.google.com/store/apps/details?id=romansytnyk.spacexlaunches&rdid=romansytnyk.spacexlaunches)
+### Get it on [Google Play](https://play.google.com/store/apps/details?id=romansytnyk.spacexlaunches)
 
 
 ## License
