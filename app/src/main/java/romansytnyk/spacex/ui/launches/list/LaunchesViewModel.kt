@@ -20,7 +20,7 @@ class LaunchesViewModel(private val dataManager: DataManager) : ViewModel() {
     fun fetchPastLaunches() {
         GlobalScope.launch(Dispatchers.IO) {
             try {
-                val pastLaunches = dataManager.fetchAllPastLaunches().await()
+                val pastLaunches = dataManager.fetchAllPastLaunches()
 
                 if (pastLaunches.isSuccessful) {
                     data.postValue(DataWrapper(pastLaunches.body()))
@@ -35,7 +35,7 @@ class LaunchesViewModel(private val dataManager: DataManager) : ViewModel() {
     fun fetchFutureLaunches() {
         GlobalScope.launch(Dispatchers.IO) {
             try {
-                val futureLaunches = dataManager.fetchFutureLaunches().await()
+                val futureLaunches = dataManager.fetchFutureLaunches()
 
                 if (futureLaunches.isSuccessful) {
                     data.postValue(DataWrapper(futureLaunches.body()))

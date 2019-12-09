@@ -13,27 +13,27 @@ import romansytnyk.spacex.data.api.model.Rocket
  */
 class DataManager(private val api: Api) : IDataManager {
 
-    override fun fetchAllPastLaunches(): Deferred<Response<List<Launch>>> {
+    override suspend fun fetchAllPastLaunches(): Response<List<Launch>> {
         return api.fetchAllPastLaunches()
     }
 
-    override fun fetchFutureLaunches():  Deferred<Response<List<Launch>>> {
+    override suspend fun fetchFutureLaunches():  Response<List<Launch>> {
         return api.fetchFutureLaunches()
     }
 
-    override fun fetchRocketList(): Deferred<Response<List<Rocket>>> {
+    override suspend fun fetchRocketList(): Response<List<Rocket>> {
         return api.fetchRocketList()
     }
 
-    override fun fetchRocketByName(name: String): Deferred<Response<Rocket>> {
+    override suspend fun fetchRocketByName(name: String): Response<Rocket> {
         return api.fetchRocketByName(name)
     }
 
-    override fun fetchCapsuleList(): Deferred<Response<List<Capsule>>> {
+    override suspend fun fetchCapsuleList(): Response<List<Capsule>> {
         return api.fetchCapsuleList()
     }
 
-    override fun fetchCapsuleByName(name: String): Deferred<Response<Capsule>> {
+    override suspend fun fetchCapsuleByName(name: String): Response<Capsule> {
         return api.fetchCapsuleByName(name)
     }
 }

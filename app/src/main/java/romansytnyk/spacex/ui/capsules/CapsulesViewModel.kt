@@ -19,7 +19,7 @@ class CapsulesViewModel(private val dataManager: DataManager) : ViewModel() {
     fun fetchCapsules(): MutableLiveData<DataWrapper<List<Capsule>>> {
         GlobalScope.launch(Dispatchers.IO) {
             try {
-                val rockets = dataManager.fetchCapsuleList().await()
+                val rockets = dataManager.fetchCapsuleList()
 
                 if (rockets.isSuccessful) {
                     data.postValue(DataWrapper(rockets.body()))

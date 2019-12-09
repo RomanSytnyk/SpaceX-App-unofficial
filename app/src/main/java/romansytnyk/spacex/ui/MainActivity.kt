@@ -1,6 +1,7 @@
 package romansytnyk.spacex.ui
 
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -52,16 +53,14 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView.selectedItemId = R.id.action_launches
     }
 
-    override fun onSaveInstanceState(outState: Bundle?) {
-        outState?.putInt(RESTORE_CURRENT_TAB, bottomNavigationView.selectedItemId)
-        super.onSaveInstanceState(outState)
+    override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
+        outState.putInt(RESTORE_CURRENT_TAB, bottomNavigationView.selectedItemId)
+        super.onSaveInstanceState(outState, outPersistentState)
     }
 
-    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
-        savedInstanceState?.let {
-            bottomNavigationView.selectedItemId = savedInstanceState.getInt(RESTORE_CURRENT_TAB)
-        }
+        bottomNavigationView.selectedItemId = savedInstanceState.getInt(RESTORE_CURRENT_TAB)
     }
 
     private fun addAndHideFragment(fragment: androidx.fragment.app.Fragment) {
@@ -81,8 +80,8 @@ class MainActivity : AppCompatActivity() {
         currentFragment = fragment
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        if(item?.itemId == android.R.id.home) finish()
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId == android.R.id.home) finish()
         return super.onOptionsItemSelected(item)
     }
 }

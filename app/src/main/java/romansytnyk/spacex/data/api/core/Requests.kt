@@ -1,6 +1,5 @@
 package romansytnyk.spacex.data.api.core
 
-import kotlinx.coroutines.Deferred
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -14,21 +13,21 @@ import romansytnyk.spacex.data.api.model.Rocket
  */
 interface Requests {
     @GET(Api.REQUEST_GET_ALL_PAST_LAUNCHES)
-    fun fetchAllPastLaunches(): Deferred<Response<List<Launch>>>
+    suspend fun fetchAllPastLaunches(): Response<List<Launch>>
 
     @GET(Api.REQUEST_GET_FUTURE_LAUNCHES)
-    fun fetchFutureLaunches(): Deferred<Response<List<Launch>>>
+    suspend fun fetchFutureLaunches(): Response<List<Launch>>
 
     @GET(Api.REQUEST_GET_ROCKETS)
-    fun fetchRocketList(): Deferred<Response<List<Rocket>>>
+    suspend fun fetchRocketList(): Response<List<Rocket>>
 
     @GET(Api.REQUEST_GET_ROCKETS + "/{name}" )
-    fun fetchRocketByName(@Path("name") name: String): Deferred<Response<Rocket>>
+    suspend fun fetchRocketByName(@Path("name") name: String): Response<Rocket>
 
 
     @GET(Api.REQUEST_GET_CAPSULES)
-    fun fetchCapsuleList(): Deferred<Response<List<Capsule>>>
+    suspend fun fetchCapsuleList(): Response<List<Capsule>>
 
     @GET(Api.REQUEST_GET_CAPSULES + "/{name}" )
-    fun fetchCapsuleByName(@Path("name") name: String): Deferred<Response<Capsule>>
+    suspend fun fetchCapsuleByName(@Path("name") name: String): Response<Capsule>
 }

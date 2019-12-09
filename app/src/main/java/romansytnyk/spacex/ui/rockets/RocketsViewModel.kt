@@ -19,7 +19,7 @@ class RocketsViewModel(private val dataManager: DataManager) : ViewModel() {
     fun fetchLaunches(): MutableLiveData<DataWrapper<List<Rocket>>> {
         GlobalScope.launch(Dispatchers.IO) {
             try {
-                val rockets = dataManager.fetchRocketList().await()
+                val rockets = dataManager.fetchRocketList()
 
                 if (rockets.isSuccessful) {
                     data.postValue(DataWrapper(rockets.body()))

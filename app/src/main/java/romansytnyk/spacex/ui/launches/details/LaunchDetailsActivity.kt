@@ -36,7 +36,7 @@ class LaunchDetailsActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_launch_details)
-        launchData = intent.getParcelableExtra(EXTRA_LAUNCH)
+        launchData = intent.getParcelableExtra(EXTRA_LAUNCH) as Launch
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         title = "${launchData.flightNumber}. ${launchData.rocket?.rocketName} (${launchData.rocket?.rocketType})"
@@ -218,9 +218,8 @@ class LaunchDetailsActivity : BaseActivity() {
         youtubePlayerView.release()
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        val id = item?.itemId
-        if (id == android.R.id.home) {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
             onBackPressed()
         }
 

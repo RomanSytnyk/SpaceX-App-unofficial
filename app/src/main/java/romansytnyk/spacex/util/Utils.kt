@@ -2,6 +2,8 @@ package romansytnyk.spacex.util
 
 import android.content.Context
 import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.os.Build
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -12,8 +14,20 @@ import java.util.*
 object Utils {
     fun isOnline(context: Context?): Boolean {
         val connectivityManager = context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val networkInfo = connectivityManager.activeNetworkInfo
-        return networkInfo != null && networkInfo.isConnected
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val nw = connectivityManager.activeNetwork ?: return false
+            val actNw = connectivityManager.getNetworkCapabilities(nw) ?: return false
+            return when {
+                actNw.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
+                actNw.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
+                //for other device how are able to connect with Ethernet
+                actNw.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
+                else -> false
+            }
+        } else {
+            val nwInfo = connectivityManager.activeNetworkInfo ?: return false
+            return nwInfo.isConnected
+        }
     }
 }
 
@@ -30,7 +44,9 @@ fun String.formatLaunchDateToUserTimezone(): String {
         val getTimeZoneShort = SimpleDateFormat("z", Locale.US)
         val timeZoneShort = getTimeZoneShort.format(Calendar.getInstance().time)
 
-        convertedDate = "${currentFormat.format(utcDate)} ($timeZoneShort)"
+        utcDate?.let {
+            convertedDate = "${currentFormat.format(it)} ($timeZoneShort)"
+        }
     } catch (e: Exception) {
         e.printStackTrace()
     }
@@ -45,7 +61,10 @@ fun String.formatLaunchDateToUTC(): String {
         val utcDate = utcFormat.parse(this)
 
         val currentFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
-        convertedDate = currentFormat.format(utcDate) + " (GMT)"
+
+        utcDate?.let {
+            convertedDate = currentFormat.format(utcDate) + " (GMT)"
+        }
     } catch (e: Exception) {
         e.printStackTrace()
     }
@@ -66,7 +85,9 @@ fun String.formatLaunchDateToNativeTimezone(): String {
             timeZone = this.substring(this.lastIndexOf("+"), this.length)
         }
 
-        convertedDate = "${currentFormat.format(oldFormatDate)} (GMT$timeZone)"
+        oldFormatDate?.let {
+            convertedDate = "${currentFormat.format(oldFormatDate)} (GMT$timeZone)"
+        }
     } catch (e: Exception) {
         e.printStackTrace()
     }

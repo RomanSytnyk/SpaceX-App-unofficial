@@ -19,27 +19,27 @@ class Api(private val requests: Requests) : IApi {
         const val REQUEST_GET_CAPSULES = "/v2/capsules"
     }
 
-    override fun fetchAllPastLaunches(): Deferred<Response<List<Launch>>> {
+    override suspend fun fetchAllPastLaunches(): Response<List<Launch>> {
         return requests.fetchAllPastLaunches()
     }
 
-    override fun fetchFutureLaunches(): Deferred<Response<List<Launch>>> {
+    override suspend fun fetchFutureLaunches(): Response<List<Launch>> {
         return requests.fetchFutureLaunches()
     }
 
-    override fun fetchRocketList(): Deferred<Response<List<Rocket>>> {
+    override suspend fun fetchRocketList(): Response<List<Rocket>> {
         return requests.fetchRocketList()
     }
 
-    override fun fetchRocketByName(name: String): Deferred<Response<Rocket>> {
+    override suspend fun fetchRocketByName(name: String): Response<Rocket> {
         return requests.fetchRocketByName(name)
     }
 
-    override fun fetchCapsuleList(): Deferred<Response<List<Capsule>>> {
+    override suspend fun fetchCapsuleList(): Response<List<Capsule>> {
         return requests.fetchCapsuleList()
     }
 
-    override fun fetchCapsuleByName(name: String): Deferred<Response<Capsule>> {
+    override suspend fun fetchCapsuleByName(name: String): Response<Capsule> {
         return requests.fetchCapsuleByName(name)
     }
 }
