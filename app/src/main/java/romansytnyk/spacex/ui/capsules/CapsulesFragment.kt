@@ -9,7 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_list_data.*
 import kotlinx.android.synthetic.main.no_internet.*
-import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import romansytnyk.spacex.R
 import romansytnyk.spacex.ui.base.BaseFragment
 import romansytnyk.spacex.ui.capsules.adapter.CapsulesAdapter
@@ -17,7 +17,7 @@ import romansytnyk.spacex.util.Utils
 
 
 class CapsulesFragment : BaseFragment() {
-    private val viewModel: CapsulesViewModel by inject()
+    private val viewModel: CapsulesViewModel by viewModel()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_list_data, container, false)

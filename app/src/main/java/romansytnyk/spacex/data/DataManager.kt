@@ -1,7 +1,6 @@
 package romansytnyk.spacex.data
 
 
-import kotlinx.coroutines.Deferred
 import retrofit2.Response
 import romansytnyk.spacex.data.api.Api
 import romansytnyk.spacex.data.api.model.Capsule

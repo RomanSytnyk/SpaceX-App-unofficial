@@ -7,7 +7,6 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import romansytnyk.spacex.data.DataManager
 import romansytnyk.spacex.data.api.model.Launch
-import romansytnyk.spacex.data.api.model.LaunchesBunch
 import romansytnyk.spacex.data.api.util.DataWrapper
 import romansytnyk.spacex.data.api.util.Failure
 

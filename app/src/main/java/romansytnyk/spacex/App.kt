@@ -1,7 +1,8 @@
 package romansytnyk.spacex
 
 import android.app.Application
-import org.koin.android.ext.android.startKoin
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.startKoin
 import romansytnyk.spacex.di.diModule
 
 /**
@@ -13,6 +14,9 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        startKoin(this, listOf(diModule))
+        startKoin {
+            androidContext(this@App)
+            modules(diModule)
+        }
     }
 }

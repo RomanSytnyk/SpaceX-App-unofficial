@@ -9,7 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_list_data.*
 import kotlinx.android.synthetic.main.no_internet.*
-import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import romansytnyk.spacex.R
 import romansytnyk.spacex.data.api.model.Launch
 import romansytnyk.spacex.ui.base.BaseFragment
@@ -21,7 +21,7 @@ import romansytnyk.spacex.util.Utils
 const val IS_FUTURE = "is_future"
 
 class LaunchesFragment : BaseFragment(), OnLaunchItemClicked {
-    private val viewModel: LaunchesViewModel by inject()
+    private val viewModel: LaunchesViewModel by viewModel()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_list_data, container, false)

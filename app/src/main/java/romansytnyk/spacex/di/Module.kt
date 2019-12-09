@@ -1,7 +1,8 @@
 package romansytnyk.spacex.di
 
-import org.koin.androidx.viewmodel.ext.koin.viewModel
-import org.koin.dsl.module.module
+
+import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.dsl.module
 import romansytnyk.spacex.data.DataManager
 import romansytnyk.spacex.data.api.core.ApiClient
 import romansytnyk.spacex.ui.capsules.CapsulesViewModel
