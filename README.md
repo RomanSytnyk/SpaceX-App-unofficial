@@ -7,7 +7,7 @@ Libraries:
 - Android Support Library
 - Android Architecture Components
 - Glide
-- Retrofit 2 + Coroutines Adapter
+- Retrofit 2
 - Koin
 - AndroidYouTubePlayer
 
