@@ -2,8 +2,8 @@ package romansytnyk.spacex.ui.rockets
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import romansytnyk.spacex.data.DataManager
 import romansytnyk.spacex.data.api.model.Rocket
@@ -17,7 +17,7 @@ class RocketsViewModel(private val dataManager: DataManager) : ViewModel() {
     var data: MutableLiveData<DataWrapper<List<Rocket>>> = MutableLiveData()
 
     fun fetchLaunches(): MutableLiveData<DataWrapper<List<Rocket>>> {
-        GlobalScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(Dispatchers.IO) {
             try {
                 val rockets = dataManager.fetchRocketList()
 

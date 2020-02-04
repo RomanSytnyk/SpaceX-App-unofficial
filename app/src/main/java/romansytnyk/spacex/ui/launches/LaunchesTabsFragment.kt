@@ -18,7 +18,7 @@ class LaunchesTabsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val pagerAdapter = LaunchesPagerAdapter(fragmentManager, view.context)
+        val pagerAdapter = LaunchesPagerAdapter(parentFragmentManager, view.context)
         viewPager.adapter = pagerAdapter
         tabLayout.isTabIndicatorFullWidth = false
         tabLayout.setupWithViewPager(viewPager)

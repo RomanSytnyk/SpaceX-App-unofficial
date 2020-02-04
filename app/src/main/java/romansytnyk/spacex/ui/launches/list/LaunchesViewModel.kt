@@ -2,8 +2,8 @@ package romansytnyk.spacex.ui.launches.list
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import romansytnyk.spacex.data.DataManager
 import romansytnyk.spacex.data.api.model.Launch
@@ -17,7 +17,7 @@ class LaunchesViewModel(private val dataManager: DataManager) : ViewModel() {
     var data: MutableLiveData<DataWrapper<List<Launch>>> = MutableLiveData()
 
     fun fetchPastLaunches() {
-        GlobalScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(Dispatchers.IO) {
             try {
                 val pastLaunches = dataManager.fetchAllPastLaunches()
 
@@ -32,7 +32,7 @@ class LaunchesViewModel(private val dataManager: DataManager) : ViewModel() {
     }
 
     fun fetchFutureLaunches() {
-        GlobalScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(Dispatchers.IO) {
             try {
                 val futureLaunches = dataManager.fetchFutureLaunches()
 

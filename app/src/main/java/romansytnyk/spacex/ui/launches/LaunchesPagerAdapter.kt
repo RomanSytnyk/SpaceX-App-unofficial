@@ -9,7 +9,7 @@ import romansytnyk.spacex.R
 import romansytnyk.spacex.ui.launches.list.IS_FUTURE
 import romansytnyk.spacex.ui.launches.list.LaunchesFragment
 
-class LaunchesPagerAdapter(fm: FragmentManager?, private val context: Context) : FragmentPagerAdapter(fm) {
+class LaunchesPagerAdapter(fm: FragmentManager, private val context: Context) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
     private val fragments: Array<Fragment>
     private val pageTitles: Array<String>
 
