@@ -15,7 +15,6 @@ data class Capsule(
 		@SerializedName("sidewall_angle_deg") val sidewallAngleDeg: Int?,
 		@SerializedName("orbit_duration_yr") val orbitDurationYr: Double?,
 		@SerializedName("heat_shield") val heatShield: HeatShield?,
-		@SerializedName("thrusters") val thrusters: List<Thruster?>?,
 		@SerializedName("launch_payload_mass") val launchPayloadMass: LaunchPayloadMass?,
 		@SerializedName("launch_payload_vol") val launchPayloadVol: LaunchPayloadVol?,
 		@SerializedName("return_payload_mass") val returnPayloadMass: ReturnPayloadMass?,
@@ -41,15 +40,6 @@ data class HeatShield(
 data class LaunchPayloadVol(
 		@SerializedName("cubic_meters") val cubicMeters: Double?,
 		@SerializedName("cubic_feet") val cubicFeet: Double?
-)
-
-data class Thruster(
-		@SerializedName("type") val type: String?,
-		@SerializedName("amount") val amount: Int,
-		@SerializedName("pods") val pods: Double?,
-		@SerializedName("fuel_1") val fuel1: String?,
-		@SerializedName("fuel_2") val fuel2: String?,
-		@SerializedName("thrust") val thrust: Thrust?
 )
 
 data class PressurizedCapsule(
