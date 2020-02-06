@@ -1,4 +1,4 @@
-package romansytnyk.spacex.data.repository
+package romansytnyk.spacex.data.datasource
 
 import romansytnyk.spacex.data.api.Api
 import romansytnyk.spacex.data.core.BaseDataSource

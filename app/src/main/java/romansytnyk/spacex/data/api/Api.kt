@@ -11,12 +11,6 @@ import romansytnyk.spacex.data.api.model.Rocket
  * Created by Roman on 18.02.2018
  */
 class Api(private val requests: Requests) : IApi {
-    companion object {
-        const val REQUEST_GET_ALL_PAST_LAUNCHES = "/v2/launches"
-        const val REQUEST_GET_FUTURE_LAUNCHES = "/v2/launches/upcoming"
-        const val REQUEST_GET_ROCKETS = "/v2/rockets"
-        const val REQUEST_GET_CAPSULES = "/v2/capsules"
-    }
 
     override suspend fun fetchAllPastLaunches(): Response<List<Launch>> {
         return requests.fetchAllPastLaunches()

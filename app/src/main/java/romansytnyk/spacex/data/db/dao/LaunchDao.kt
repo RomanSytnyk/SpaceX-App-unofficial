@@ -22,7 +22,7 @@ interface LaunchDao {
     fun delete(launch: LaunchEntity)
 
     @Query("DELETE FROM launchentity")
-    fun deleteAllTable()
+    fun deleteAll()
 
     @Query("DELETE FROM launchentity WHERE isPastLaunch = 1")
     fun deleteAllPastLaunches()

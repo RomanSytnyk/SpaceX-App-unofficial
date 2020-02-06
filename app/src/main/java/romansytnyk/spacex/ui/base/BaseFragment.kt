@@ -11,7 +11,6 @@ import android.widget.Toast
 import androidx.annotation.StringRes
 import com.google.android.material.snackbar.Snackbar
 import romansytnyk.spacex.R
-import romansytnyk.spacex.data.api.util.Failure
 import romansytnyk.spacex.util.Utils
 import java.util.*
 
@@ -42,15 +41,6 @@ abstract class BaseFragment : androidx.fragment.app.Fragment() {
 
         layout.addView(rl, params)
         hideProgressBar()
-    }
-
-    fun handleFailure(failure: Failure?) {
-        when (failure) {
-            is Failure.NetworkConnection -> {
-                if (Utils.isOnline(rootView.context)) showSnackbar(R.string.error)
-            }
-            is Failure.ServerError -> showSnackbar(failure.message)
-        }
     }
 
     fun showProgressBar() {

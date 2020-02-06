@@ -10,7 +10,10 @@ interface RocketDao {
         fun getAll(): LiveData<List<RocketEntity>>
 
         @Insert
-        fun insertAll(vararg rocket: RocketEntity)
+        fun insert(launches: List<RocketEntity>)
+
+        @Query("DELETE FROM rocketentity")
+        fun deleteAll()
 
         @Delete
         fun delete(rocket: RocketEntity)

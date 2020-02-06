@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_launches.view.*
 import romansytnyk.spacex.R
-import romansytnyk.spacex.data.api.model.Launch
 import romansytnyk.spacex.data.db.entity.LaunchEntity
 import romansytnyk.spacex.util.formatLaunchDateToNativeTimezone
 

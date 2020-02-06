@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
 @Entity
 data class RocketEntity(
         @PrimaryKey(autoGenerate = true)
-        var id: Int,
+        var id: Int = 0,
 
         @ColumnInfo(name = "name") val name: String?,
         @ColumnInfo(name = "type") val type: String?,
@@ -60,4 +60,9 @@ data class FirstStage(
         val engines: Int?,
         val fuelAmountTons: Double?,
         val burnTimeSec: Double?
+)
+
+data class Diameter(
+        @ColumnInfo(name ="d_m") val meters: Double?,
+        @ColumnInfo(name ="d_f") val feet: Double?
 )

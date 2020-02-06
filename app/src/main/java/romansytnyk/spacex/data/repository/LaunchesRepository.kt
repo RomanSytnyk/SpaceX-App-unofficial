@@ -1,9 +1,10 @@
 package romansytnyk.spacex.data.repository
 
-import romansytnyk.spacex.data.db.dao.LaunchDao
 import romansytnyk.spacex.data.core.BaseDataSource
 import romansytnyk.spacex.data.core.resultLiveData
-import romansytnyk.spacex.data.mapper.LaunchesMapper.mapDtoToLaunchEntity
+import romansytnyk.spacex.data.datasource.LaunchesDataSource
+import romansytnyk.spacex.data.db.dao.LaunchDao
+import romansytnyk.spacex.data.mapper.DataMapper.mapLaunchToLaunchEntity
 
 class LaunchesRepository(private val dataSource: LaunchesDataSource,
                          private val launchDao: LaunchDao): BaseDataSource() {
@@ -13,7 +14,7 @@ class LaunchesRepository(private val dataSource: LaunchesDataSource,
             networkCall = { dataSource.fetchPastLaunches() },
             saveCallResult = { 
                 launchDao.deleteAllPastLaunches()
-                launchDao.insert(it.map { mapDtoToLaunchEntity(it, isPastLaunches = true) }) 
+                launchDao.insert(it.map { mapLaunchToLaunchEntity(it, isPastLaunches = true) })
             })
 
     val futureLaunches = resultLiveData(
@@ -21,6 +22,6 @@ class LaunchesRepository(private val dataSource: LaunchesDataSource,
             networkCall = { dataSource.fetchFutureLaunches() },
             saveCallResult = {
                 launchDao.deleteAllFutureLaunches()
-                launchDao.insert(it.map { mapDtoToLaunchEntity(it, isPastLaunches = false) }) 
+                launchDao.insert(it.map { mapLaunchToLaunchEntity(it, isPastLaunches = false) })
             })
 }

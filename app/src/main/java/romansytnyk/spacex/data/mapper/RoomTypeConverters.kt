@@ -5,7 +5,6 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import romansytnyk.spacex.data.db.entity.Core
 import romansytnyk.spacex.data.db.entity.Payload
-import java.util.*
 
 class RoomTypeConverters {
 

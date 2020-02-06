@@ -10,7 +10,10 @@ interface CapsuleDao {
     fun getAll(): LiveData<List<CapsuleEntity>>
 
     @Insert
-    fun insertAll(vararg capsule: CapsuleEntity)
+    fun insert(launches: List<CapsuleEntity>)
+
+    @Query("DELETE FROM capsuleentity")
+    fun deleteAll()
 
     @Delete
     fun delete(capsule: CapsuleEntity)

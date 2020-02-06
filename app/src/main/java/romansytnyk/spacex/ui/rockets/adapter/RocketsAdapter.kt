@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.annotation.StringRes
 import kotlinx.android.synthetic.main.item_rockets.view.*
 import romansytnyk.spacex.R
-import romansytnyk.spacex.data.api.model.Rocket
+import romansytnyk.spacex.data.db.entity.RocketEntity
 import java.text.DecimalFormat
 import java.text.NumberFormat
 import java.util.*
@@ -15,7 +15,7 @@ import java.util.*
 /**
  * Created by Roman on 02.03.2018
  */
-class RocketsAdapter(private var rockets: List<Rocket>) : androidx.recyclerview.widget.RecyclerView.Adapter<RocketsAdapter.RocketViewHolder>() {
+class RocketsAdapter(private var rockets: List<RocketEntity>) : androidx.recyclerview.widget.RecyclerView.Adapter<RocketsAdapter.RocketViewHolder>() {
 
     init {
         rockets = rockets.reversed()
@@ -33,7 +33,7 @@ class RocketsAdapter(private var rockets: List<Rocket>) : androidx.recyclerview.
     override fun getItemCount(): Int = rockets.size
 
     inner class RocketViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
-        fun fillWith(item: Rocket) {
+        fun fillWith(item: RocketEntity) {
             itemView.rocket.text = item.name
             itemView.description.text = item.description
             itemView.stages.text = String.format(getString(R.string.rocket_stages), item.stages)

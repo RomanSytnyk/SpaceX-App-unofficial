@@ -10,12 +10,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_list_data.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import romansytnyk.spacex.R
+import romansytnyk.spacex.data.core.Resource
+import romansytnyk.spacex.data.db.entity.LaunchEntity
 import romansytnyk.spacex.ui.base.BaseFragment
 import romansytnyk.spacex.ui.launches.details.LaunchDetailsActivity
 import romansytnyk.spacex.ui.launches.list.adapter.LaunchesAdapter
 import romansytnyk.spacex.ui.launches.list.adapter.OnLaunchItemClicked
-import romansytnyk.spacex.data.core.Result
-import romansytnyk.spacex.data.db.entity.LaunchEntity
 
 const val IS_FUTURE = "is_future"
 
@@ -33,16 +33,16 @@ class LaunchesFragment : BaseFragment(), OnLaunchItemClicked {
     }
 
     private fun initObservers() {
-        val launchesObserver = Observer<Result<List<LaunchEntity>>> { result ->
-            when (result.status) {
-                Result.Status.SUCCESS -> {
+        val launchesObserver = Observer<Resource<List<LaunchEntity>>> { result ->
+            when (result) {
+                is Resource.Success -> {
                     hideProgressBar()
                     recyclerView.adapter = LaunchesAdapter(
                             result.data ?: listOf(),
                             this)
                 }
-                Result.Status.LOADING -> showProgressBar()
-                Result.Status.ERROR -> {
+                is Resource.Loading -> showProgressBar()
+                is Resource.Error -> {
                     hideProgressBar()
                     showSnackbar(result.message ?: getString(R.string.error))
                 }
