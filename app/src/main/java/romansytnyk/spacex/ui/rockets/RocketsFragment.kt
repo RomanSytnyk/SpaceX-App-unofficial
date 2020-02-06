@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_list_data.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import romansytnyk.spacex.R
-import romansytnyk.spacex.data.core.Resource
+import romansytnyk.spacex.data.util.core.Resource
 import romansytnyk.spacex.ui.base.BaseFragment
 import romansytnyk.spacex.ui.rockets.adapter.RocketsAdapter
 

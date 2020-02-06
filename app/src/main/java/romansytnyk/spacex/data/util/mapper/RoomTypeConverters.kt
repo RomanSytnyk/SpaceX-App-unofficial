@@ -1,4 +1,4 @@
-package romansytnyk.spacex.data.mapper
+package romansytnyk.spacex.data.util.mapper
 
 import androidx.room.TypeConverter
 import com.google.gson.Gson

@@ -1,4 +1,4 @@
-package romansytnyk.spacex.data.mapper
+package romansytnyk.spacex.data.util.mapper
 
 import romansytnyk.spacex.data.api.model.Capsule
 import romansytnyk.spacex.data.api.model.Launch

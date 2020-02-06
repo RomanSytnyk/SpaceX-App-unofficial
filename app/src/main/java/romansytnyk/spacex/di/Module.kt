@@ -5,9 +5,9 @@ import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import romansytnyk.spacex.data.api.core.ApiClient
-import romansytnyk.spacex.data.datasource.CapsuleDataSource
-import romansytnyk.spacex.data.datasource.LaunchesDataSource
-import romansytnyk.spacex.data.datasource.RocketDataSource
+import romansytnyk.spacex.data.repository.datasource.CapsuleDataSource
+import romansytnyk.spacex.data.repository.datasource.LaunchesDataSource
+import romansytnyk.spacex.data.repository.datasource.RocketDataSource
 import romansytnyk.spacex.data.db.AppDatabase
 import romansytnyk.spacex.data.repository.*
 import romansytnyk.spacex.ui.capsules.CapsulesViewModel

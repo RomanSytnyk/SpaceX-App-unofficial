@@ -11,7 +11,7 @@ import romansytnyk.spacex.data.db.dao.RocketDao
 import romansytnyk.spacex.data.db.entity.CapsuleEntity
 import romansytnyk.spacex.data.db.entity.LaunchEntity
 import romansytnyk.spacex.data.db.entity.RocketEntity
-import romansytnyk.spacex.data.mapper.RoomTypeConverters
+import romansytnyk.spacex.data.util.mapper.RoomTypeConverters
 
 @Database(entities = [CapsuleEntity::class, LaunchEntity::class, RocketEntity::class],
         version = 1)

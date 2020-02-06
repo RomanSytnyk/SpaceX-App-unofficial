@@ -1,10 +1,10 @@
 package romansytnyk.spacex.data.repository
 
-import romansytnyk.spacex.data.core.BaseDataSource
-import romansytnyk.spacex.data.core.resultLiveData
-import romansytnyk.spacex.data.datasource.LaunchesDataSource
+import romansytnyk.spacex.data.util.core.BaseDataSource
+import romansytnyk.spacex.data.util.core.resultLiveData
+import romansytnyk.spacex.data.repository.datasource.LaunchesDataSource
 import romansytnyk.spacex.data.db.dao.LaunchDao
-import romansytnyk.spacex.data.mapper.DataMapper.mapLaunchToLaunchEntity
+import romansytnyk.spacex.data.util.mapper.DataMapper.mapLaunchToLaunchEntity
 
 class LaunchesRepository(private val dataSource: LaunchesDataSource,
                          private val launchDao: LaunchDao): BaseDataSource() {

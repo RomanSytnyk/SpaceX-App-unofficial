@@ -1,7 +1,7 @@
-package romansytnyk.spacex.data.datasource
+package romansytnyk.spacex.data.repository.datasource
 
 import romansytnyk.spacex.data.api.Api
-import romansytnyk.spacex.data.core.BaseDataSource
+import romansytnyk.spacex.data.util.core.BaseDataSource
 
 class CapsuleDataSource(private val api: Api): BaseDataSource() {
     suspend fun fetchCapsuleList() = getResult { api.fetchCapsuleList() }

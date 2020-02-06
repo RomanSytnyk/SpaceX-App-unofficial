@@ -1,10 +1,10 @@
 package romansytnyk.spacex.data.repository
 
-import romansytnyk.spacex.data.core.BaseDataSource
-import romansytnyk.spacex.data.core.resultLiveData
-import romansytnyk.spacex.data.datasource.RocketDataSource
+import romansytnyk.spacex.data.util.core.BaseDataSource
+import romansytnyk.spacex.data.util.core.resultLiveData
+import romansytnyk.spacex.data.repository.datasource.RocketDataSource
 import romansytnyk.spacex.data.db.dao.RocketDao
-import romansytnyk.spacex.data.mapper.DataMapper
+import romansytnyk.spacex.data.util.mapper.DataMapper
 
 class RocketRepository(private val dataSource: RocketDataSource,
                        private val rocketDao: RocketDao): BaseDataSource() {

@@ -1,4 +1,4 @@
-package romansytnyk.spacex.data.core
+package romansytnyk.spacex.data.util.core
 
 import retrofit2.Response
 
