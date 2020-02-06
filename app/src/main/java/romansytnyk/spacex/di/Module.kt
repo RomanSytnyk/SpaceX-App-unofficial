@@ -7,6 +7,8 @@ import org.koin.dsl.module
 import romansytnyk.spacex.data.DataManager
 import romansytnyk.spacex.data.api.core.ApiClient
 import romansytnyk.spacex.data.db.AppDatabase
+import romansytnyk.spacex.data.repository.LaunchesDataSource
+import romansytnyk.spacex.data.repository.LaunchesRepository
 import romansytnyk.spacex.ui.capsules.CapsulesViewModel
 import romansytnyk.spacex.ui.launches.list.LaunchesViewModel
 import romansytnyk.spacex.ui.rockets.RocketsViewModel
@@ -14,6 +16,10 @@ import romansytnyk.spacex.ui.rockets.RocketsViewModel
 val diModule = module {
     single { ApiClient().spacexApi }
     single { DataManager(get()) }
+
+    // Data
+    single { LaunchesDataSource(get()) }
+    single { LaunchesRepository(get(), get()) }
 
     // Database
     single { AppDatabase.buildDatabase(androidApplication()) }

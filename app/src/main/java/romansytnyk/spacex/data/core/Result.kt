@@ -1,4 +1,4 @@
-package romansytnyk.spacex.data
+package romansytnyk.spacex.data.core
 
 /**
  * A generic class that holds a value with its loading status.

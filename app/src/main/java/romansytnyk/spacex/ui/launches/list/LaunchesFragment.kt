@@ -8,15 +8,14 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_list_data.*
-import kotlinx.android.synthetic.main.no_internet.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import romansytnyk.spacex.R
-import romansytnyk.spacex.data.api.model.Launch
 import romansytnyk.spacex.ui.base.BaseFragment
 import romansytnyk.spacex.ui.launches.details.LaunchDetailsActivity
 import romansytnyk.spacex.ui.launches.list.adapter.LaunchesAdapter
 import romansytnyk.spacex.ui.launches.list.adapter.OnLaunchItemClicked
-import romansytnyk.spacex.util.Utils
+import romansytnyk.spacex.data.core.Result
+import romansytnyk.spacex.data.db.entity.LaunchEntity
 
 const val IS_FUTURE = "is_future"
 
@@ -31,34 +30,30 @@ class LaunchesFragment : BaseFragment(), OnLaunchItemClicked {
         super.onViewCreated(view, savedInstanceState)
         initViews()
         initObservers()
-        fetchLaunches()
     }
 
     private fun initObservers() {
-        viewModel.data.observe(this, Observer { launches ->
-            hideProgressBar()
-            launches?.error?.let {
-                handleFailure(it)
-                return@Observer
+        val launchesObserver = Observer<Result<List<LaunchEntity>>> { result ->
+            when (result.status) {
+                Result.Status.SUCCESS -> {
+                    hideProgressBar()
+                    recyclerView.adapter = LaunchesAdapter(
+                            result.data ?: listOf(),
+                            this)
+                }
+                Result.Status.LOADING -> showProgressBar()
+                Result.Status.ERROR -> {
+                    hideProgressBar()
+                    showSnackbar(result.message ?: getString(R.string.error))
+                }
             }
+        }
 
-            launches?.data.let {
-                recyclerView.adapter = LaunchesAdapter(
-                        it ?: listOf(),
-                        this)
-            }
-        })
-    }
-
-    private fun fetchLaunches() {
-        showProgressBar()
-
-        // Decide what launches to fetch
         val isFutureLaunchesToFetch = arguments?.getBoolean(IS_FUTURE) ?: false
         if (isFutureLaunchesToFetch) {
-            viewModel.fetchFutureLaunches()
+            viewModel.futureLaunches.observe(viewLifecycleOwner, launchesObserver)
         } else {
-            viewModel.fetchPastLaunches()
+            viewModel.pastLaunches.observe(viewLifecycleOwner, launchesObserver)
         }
     }
 
@@ -66,20 +61,7 @@ class LaunchesFragment : BaseFragment(), OnLaunchItemClicked {
         recyclerView.layoutManager = LinearLayoutManager(context)
     }
 
-    override fun onLaunchItemClicked(launch: Launch) {
+    override fun onLaunchItemClicked(launch: LaunchEntity) {
         LaunchDetailsActivity.start(context, launch)
-    }
-
-    override fun onResume() {
-        super.onResume()
-        if (!Utils.isOnline(context)) {
-            // User has no internet
-            recyclerView.visibility = View.GONE
-            noInternetLayout.visibility = View.VISIBLE
-        } else {
-            // Internet connection established
-            recyclerView.visibility = View.VISIBLE
-            noInternetLayout.visibility = View.GONE
-        }
     }
 }

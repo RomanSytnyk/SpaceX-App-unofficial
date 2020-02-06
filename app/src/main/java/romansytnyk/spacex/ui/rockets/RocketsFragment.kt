@@ -30,7 +30,7 @@ class RocketsFragment : BaseFragment() {
 
     private fun fetchRockets() {
         showProgressBar()
-        viewModel.fetchLaunches().observe(this, Observer { launches ->
+        viewModel.fetchLaunches().observe(viewLifecycleOwner, Observer { launches ->
             launches?.data?.let { recyclerView.adapter = RocketsAdapter(it) } ?: handleFailure(launches?.error)
             hideProgressBar()
         })

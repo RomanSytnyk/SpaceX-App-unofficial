@@ -10,13 +10,14 @@ import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_launches.view.*
 import romansytnyk.spacex.R
 import romansytnyk.spacex.data.api.model.Launch
+import romansytnyk.spacex.data.db.entity.LaunchEntity
 import romansytnyk.spacex.util.formatLaunchDateToNativeTimezone
 
 
 /**
  * Created by Roman on 18.02.2018
  */
-class LaunchesAdapter(private var launches: List<Launch>,
+class LaunchesAdapter(private var launches: List<LaunchEntity>,
                       private var listener: OnLaunchItemClicked) : RecyclerView.Adapter<LaunchesAdapter.LaunchViewHolder>() {
 
     init {
@@ -40,7 +41,7 @@ class LaunchesAdapter(private var launches: List<Launch>,
     inner class LaunchViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         @SuppressLint("SetTextI18n")
-        fun fillWith(item: Launch) {
+        fun fillWith(item: LaunchEntity) {
             itemView.rocket.text = "${item.flightNumber}. ${item.rocket?.rocketName} (${item.rocket?.rocketType})"
             itemView.time.text = (item.launchDateLocal ?: "").formatLaunchDateToNativeTimezone()
 
