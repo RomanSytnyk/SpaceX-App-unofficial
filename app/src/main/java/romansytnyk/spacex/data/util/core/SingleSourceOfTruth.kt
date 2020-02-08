@@ -9,9 +9,9 @@ import kotlinx.coroutines.Dispatchers
  * The database serves as the single source of truth.
  * Therefore UI can receive data updates from database only.
  * Function notify UI about:
- * [Resource.Status.SUCCESS] - with data from database
- * [Resource.Status.ERROR] - if error has occurred from any source
- * [Resource.Status.LOADING]
+ * [Resource.Success] - with data from database
+ * [Resource.Error] - if error has occurred from any source
+ * [Resource.Loading]
  */
 fun <T, A> resultLiveData(databaseQuery: () -> LiveData<T>,
                           networkCall: suspend () -> Resource<A>,
