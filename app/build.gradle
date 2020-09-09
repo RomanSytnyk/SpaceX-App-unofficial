@@ -5,13 +5,13 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
     defaultConfig {
         applicationId "romansytnyk.spacexlaunches"
         minSdkVersion 21
-        targetSdkVersion 29
-        versionCode 4
-        versionName "1.3"
+        targetSdkVersion 30
+        versionCode 5
+        versionName "1.3.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 

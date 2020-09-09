@@ -36,7 +36,13 @@ class LaunchDetailsActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_launch_details)
-        launchData = intent.getParcelableExtra(EXTRA_LAUNCH) as Launch
+        val data = intent.getParcelableExtra(EXTRA_LAUNCH) as? Launch
+        if (data == null) {
+            showToast(R.string.error)
+            finish()
+        } else {
+            launchData = data
+        }
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         title = "${launchData.flightNumber}. ${launchData.rocket?.rocketName} (${launchData.rocket?.rocketType})"
