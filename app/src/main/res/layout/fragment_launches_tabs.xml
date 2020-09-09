@@ -12,6 +12,7 @@
         android:background="@color/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         app:tabIndicatorColor="@android:color/white"
+        app:tabTextColor="@android:color/white"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
     </com.google.android.material.tabs.TabLayout>

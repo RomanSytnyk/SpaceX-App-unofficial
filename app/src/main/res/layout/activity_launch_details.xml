@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:background="@color/grey"
         android:padding="16dp">
 
         <ImageView
@@ -25,6 +26,7 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:cardCornerRadius="8dp"
             app:cardUseCompatPadding="true">
 
             <LinearLayout
