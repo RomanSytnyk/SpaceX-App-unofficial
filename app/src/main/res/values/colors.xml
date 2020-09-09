@@ -7,4 +7,5 @@
     <color name="colorSuccess">#4BB543</color>
     <color name="colorFail">#FF0000</color>
     <color name="colorLink">#2196F3</color>
+    <color name="grey">#eeeeee</color>
 </resources>
