@@ -10,8 +10,9 @@ Libraries:
 - Retrofit 2
 - Koin
 - AndroidYouTubePlayer
+- Room
 
-![Launches List](https://i.ibb.co/DGTDbw4/photo-2019-08-19-16-14-47.jpg)    ![Launch](https://i.ibb.co/JQTGXw2/photo-2019-08-19-16-14-48.jpg)
+![Launches List](https://i.ibb.co/fr1Q1VB/1.jpg)    ![Launch](https://i.ibb.co/fN47kqY/2.jpg)
 
 ### Get it on [Google Play](https://play.google.com/store/apps/details?id=romansytnyk.spacexlaunches)
 
