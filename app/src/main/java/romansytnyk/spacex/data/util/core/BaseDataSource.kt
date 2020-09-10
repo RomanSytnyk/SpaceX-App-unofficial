@@ -1,6 +1,7 @@
 package romansytnyk.spacex.data.util.core
 
 import retrofit2.Response
+import java.net.UnknownHostException
 
 /**
  * Abstract Base Data source class with error handling
@@ -12,16 +13,22 @@ abstract class BaseDataSource {
             val response = call()
             if (response.isSuccessful) {
                 val body = response.body()
-                if (body != null) return Resource.Success(body)
+                return if (body != null) {
+                    Resource.Success(body)
+                } else {
+                    error(ErrorType.ServerError("${response.code()} ${response.message()}"))
+                }
             }
-            return error(" ${response.code()} ${response.message()}")
+            return error(ErrorType.ServerError("${response.code()} ${response.message()}"))
+        } catch (e: UnknownHostException) {
+            return error(ErrorType.InternetError())
         } catch (e: Exception) {
-            return error(e.message ?: e.toString())
+            return error(ErrorType.ServerError(e.message ?: e.toString()))
         }
     }
 
-    private fun <T> error(message: String): Resource<T> {
-        return Resource.Error(message)
+    private fun <T> error(errorType: ErrorType): Resource<T> {
+        return Resource.Error(errorType)
     }
 
 }

@@ -13,7 +13,6 @@ class LaunchesRepository(private val dataSource: LaunchesDataSource,
             databaseQuery = { launchDao.getPastLaunches() },
             networkCall = { dataSource.fetchPastLaunches() },
             saveCallResult = {
-                launchDao.deleteAllPastLaunches()
                 launchDao.insert(it.map { launch ->
                     mapLaunchToLaunchEntity(launch, isPastLaunches = true)
                 })
@@ -23,7 +22,6 @@ class LaunchesRepository(private val dataSource: LaunchesDataSource,
             databaseQuery = { launchDao.getFutureLaunches() },
             networkCall = { dataSource.fetchFutureLaunches() },
             saveCallResult = {
-                launchDao.deleteAllFutureLaunches()
                 launchDao.insert(it.map { launch ->
                     mapLaunchToLaunchEntity(launch, isPastLaunches = false)
                 })

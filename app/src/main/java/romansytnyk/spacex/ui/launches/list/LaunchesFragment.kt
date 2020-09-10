@@ -12,6 +12,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import romansytnyk.spacex.R
 import romansytnyk.spacex.data.util.core.Resource
 import romansytnyk.spacex.data.db.entity.LaunchEntity
+import romansytnyk.spacex.data.util.core.ErrorType
 import romansytnyk.spacex.ui.base.BaseFragment
 import romansytnyk.spacex.ui.launches.details.LaunchDetailsActivity
 import romansytnyk.spacex.ui.launches.list.adapter.LaunchesAdapter
@@ -37,14 +38,15 @@ class LaunchesFragment : BaseFragment(), OnLaunchItemClicked {
             when (result) {
                 is Resource.Success -> {
                     hideProgressBar()
-                    recyclerView.adapter = LaunchesAdapter(
-                            result.data ?: listOf(),
-                            this)
+                    recyclerView.adapter = LaunchesAdapter(result.data, this)
                 }
                 is Resource.Loading -> showProgressBar()
                 is Resource.Error -> {
                     hideProgressBar()
-                    showSnackbar(result.message ?: getString(R.string.error))
+                    when (result.error) {
+                        is ErrorType.InternetError -> showSnackbar(R.string.no_internet_toast)
+                        is ErrorType.ServerError -> showSnackbar(result.error.message)
+                    }
                 }
             }
         }

@@ -7,9 +7,8 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class RocketEntity(
-        @PrimaryKey(autoGenerate = true)
-        var id: Int = 0,
-
+        @PrimaryKey
+        var id: String = "1",
         @ColumnInfo(name = "name") val name: String?,
         @ColumnInfo(name = "type") val type: String?,
         @ColumnInfo(name = "active") val active: Boolean?,

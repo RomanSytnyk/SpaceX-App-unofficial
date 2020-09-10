@@ -7,8 +7,14 @@ package romansytnyk.spacex.data.util.core
  * `LiveData<Result<T>>` to pass back the latest data to the UI with its fetch status.
  */
 
+sealed class ErrorType {
+    class InternetError : ErrorType()
+    data class ServerError(val message: String) : ErrorType()
+}
+
+
 sealed class Resource<out T> {
     class Loading<T> : Resource<T>()
-    data class Error<T>(val message: String) : Resource<T>()
+    data class Error<T>(val error: ErrorType) : Resource<T>()
     data class Success<T>(val data: T) : Resource<T>()
 }

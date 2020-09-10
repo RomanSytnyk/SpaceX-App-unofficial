@@ -25,7 +25,7 @@ fun <T, A> resultLiveData(databaseQuery: () -> LiveData<T>,
             if (responseStatus is Resource.Success) {
                 saveCallResult(responseStatus.data)
             } else if (responseStatus is Resource.Error) {
-                emit(Resource.Error(responseStatus.message))
+                emit(Resource.Error(responseStatus.error))
                 emitSource(source)
             }
         }

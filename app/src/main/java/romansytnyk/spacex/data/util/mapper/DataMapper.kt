@@ -8,7 +8,8 @@ import romansytnyk.spacex.data.db.entity.*
 object DataMapper {
 
     fun mapRocketToRocketEntity(rocket: Rocket): RocketEntity {
-        return RocketEntity(name = rocket.name,
+        return RocketEntity(id = rocket.id ?: "1",
+                name = rocket.name,
                 type = rocket.type,
                 active = rocket.active,
                 stages = rocket.stages,
@@ -46,7 +47,8 @@ object DataMapper {
     }
 
     fun mapCapsuleToCapsuleEntity(capsule: Capsule): CapsuleEntity {
-        return CapsuleEntity(name = capsule.name,
+        return CapsuleEntity(id = capsule.id ?: "1",
+                name = capsule.name,
                 type = capsule.type,
                 active = capsule.active,
                 crewCapacity = capsule.crewCapacity,
@@ -77,7 +79,8 @@ object DataMapper {
     }
 
     fun mapLaunchToLaunchEntity(launch: Launch, isPastLaunches: Boolean = false): LaunchEntity {
-        return LaunchEntity(flightNumber = launch.flightNumber,
+        return LaunchEntity(id = launch.flightNumber ?: 0,
+                flightNumber = launch.flightNumber,
                 launchYear = launch.launchYear,
                 launchDateUnix = launch.launchDateUnix,
                 launchDateUtc = launch.launchDateUtc,

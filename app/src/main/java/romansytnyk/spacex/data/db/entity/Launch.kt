@@ -10,7 +10,7 @@ import kotlinx.android.parcel.Parcelize
 @Entity
 @Parcelize
 data class LaunchEntity(
-        @PrimaryKey(autoGenerate = true)
+        @PrimaryKey
         var id: Int = 0,
 
         @ColumnInfo(name = "flight_number") val flightNumber: Int?,

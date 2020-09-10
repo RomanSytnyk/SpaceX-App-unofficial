@@ -55,4 +55,6 @@
 
     <string name="past">Past</string>
     <string name="future">Future</string>
+
+    <string name="no_internet_toast">No internet connection. Can\'t update data</string>
 </resources>

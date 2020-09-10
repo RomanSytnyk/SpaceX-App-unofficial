@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_list_data.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import romansytnyk.spacex.R
+import romansytnyk.spacex.data.util.core.ErrorType
 import romansytnyk.spacex.data.util.core.Resource
 import romansytnyk.spacex.ui.base.BaseFragment
 import romansytnyk.spacex.ui.capsules.adapter.CapsulesAdapter
@@ -38,7 +39,10 @@ class CapsulesFragment : BaseFragment() {
                 is Resource.Loading -> showProgressBar()
                 is Resource.Error -> {
                     hideProgressBar()
-                    showSnackbar(result.message)
+                    when (result.error) {
+                        is ErrorType.InternetError -> showSnackbar(R.string.no_internet_toast)
+                        is ErrorType.ServerError -> showSnackbar(result.error.message)
+                    }
                 }
             }
         })
