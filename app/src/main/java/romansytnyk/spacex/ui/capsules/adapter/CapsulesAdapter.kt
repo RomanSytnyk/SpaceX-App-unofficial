@@ -7,13 +7,13 @@ import android.view.ViewGroup
 import androidx.annotation.StringRes
 import kotlinx.android.synthetic.main.item_capsules.view.*
 import romansytnyk.spacex.R
-import romansytnyk.spacex.data.api.model.Capsule
+import romansytnyk.spacex.data.db.entity.CapsuleEntity
 
 
 /**
  * Created by Roman on 02.03.2018
  */
-class CapsulesAdapter(private var capsules: List<Capsule>) : androidx.recyclerview.widget.RecyclerView.Adapter<CapsulesAdapter.RocketViewHolder>() {
+class CapsulesAdapter(private var capsules: List<CapsuleEntity>) : androidx.recyclerview.widget.RecyclerView.Adapter<CapsulesAdapter.RocketViewHolder>() {
 
     init {
         capsules = capsules.reversed()
@@ -33,7 +33,7 @@ class CapsulesAdapter(private var capsules: List<Capsule>) : androidx.recyclervi
     inner class RocketViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
 
         @SuppressLint("SetTextI18n")
-        fun fillWith(item: Capsule) {
+        fun fillWith(item: CapsuleEntity) {
             itemView.name.text = item.name
             itemView.crew.text = String.format(getString(R.string.capsule_crew), item.crewCapacity)
 

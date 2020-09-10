@@ -13,20 +13,20 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import kotlinx.android.synthetic.main.activity_launch_details.*
 import romansytnyk.spacex.R
-import romansytnyk.spacex.data.api.model.Launch
+import romansytnyk.spacex.data.db.entity.LaunchEntity
 import romansytnyk.spacex.ui.base.BaseActivity
 import romansytnyk.spacex.util.formatLaunchDateToNativeTimezone
 import romansytnyk.spacex.util.formatLaunchDateToUTC
 import romansytnyk.spacex.util.formatLaunchDateToUserTimezone
 
 class LaunchDetailsActivity : BaseActivity() {
-    private lateinit var launchData: Launch
+    private lateinit var launchData: LaunchEntity
     private var youTubePlayer: YouTubePlayer? = null
 
     companion object {
         private const val EXTRA_LAUNCH = "launch"
 
-        fun start(context: Context?, launch: Launch) {
+        fun start(context: Context?, launch: LaunchEntity) {
             val intent = Intent(context, LaunchDetailsActivity::class.java)
             intent.putExtra(EXTRA_LAUNCH, launch)
             context?.startActivity(intent)
@@ -36,12 +36,12 @@ class LaunchDetailsActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_launch_details)
-        val data = intent.getParcelableExtra(EXTRA_LAUNCH) as? Launch
-        if (data == null) {
+        val entity = intent.getParcelableExtra(EXTRA_LAUNCH) as? LaunchEntity
+        if (entity == null) {
             showToast(R.string.error)
             finish()
         } else {
-            launchData = data
+            launchData = entity
         }
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -61,7 +61,7 @@ class LaunchDetailsActivity : BaseActivity() {
     private fun initBaseInformation() {
         val flightNumber = launchData.flightNumber
         val missionName = launchData.missionName
-        var missionId = launchData.missionId?.joinToString(", ") ?: ""
+        var missionId = launchData.missionId ?: ""
         if (missionId.isNotBlank()) {
             missionId = "($missionId)"
         }

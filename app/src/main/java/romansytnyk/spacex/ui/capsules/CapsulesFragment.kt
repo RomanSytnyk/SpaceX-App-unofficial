@@ -8,12 +8,12 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_list_data.*
-import kotlinx.android.synthetic.main.no_internet.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import romansytnyk.spacex.R
+import romansytnyk.spacex.data.util.core.ErrorType
+import romansytnyk.spacex.data.util.core.Resource
 import romansytnyk.spacex.ui.base.BaseFragment
 import romansytnyk.spacex.ui.capsules.adapter.CapsulesAdapter
-import romansytnyk.spacex.util.Utils
 
 
 class CapsulesFragment : BaseFragment() {
@@ -30,27 +30,25 @@ class CapsulesFragment : BaseFragment() {
     }
 
     private fun fetchCapsules() {
-        showProgressBar()
-        viewModel.fetchCapsules().observe(this, Observer { capsules ->
-            capsules?.data?.let { recyclerView.adapter = CapsulesAdapter(it) } ?: handleFailure(capsules?.error)
-            hideProgressBar()
+        viewModel.capsules.observe(viewLifecycleOwner, Observer { result ->
+            when (result) {
+                is Resource.Success -> {
+                    recyclerView.adapter = CapsulesAdapter(result.data)
+                    hideProgressBar()
+                }
+                is Resource.Loading -> showProgressBar()
+                is Resource.Error -> {
+                    hideProgressBar()
+                    when (result.error) {
+                        is ErrorType.InternetError -> showSnackbar(R.string.no_internet_toast)
+                        is ErrorType.ServerError -> showSnackbar(result.error.message)
+                    }
+                }
+            }
         })
     }
 
     private fun initViews() {
         recyclerView.layoutManager = LinearLayoutManager(context)
-    }
-
-    override fun onResume() {
-        super.onResume()
-        if (!Utils.isOnline(context)) {
-            // User has no internet
-            recyclerView.visibility = View.GONE
-            noInternetLayout.visibility = View.VISIBLE
-        } else {
-            // Internet connection established
-            recyclerView.visibility = View.VISIBLE
-            noInternetLayout.visibility = View.GONE
-        }
     }
 }

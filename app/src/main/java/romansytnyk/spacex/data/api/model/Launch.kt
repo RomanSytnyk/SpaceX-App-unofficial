@@ -6,12 +6,6 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class LaunchesBunch(
-		val futureLaunches: List<Launch>?,
-		val pastLaunches: List<Launch>?
-): Parcelable
-
-@Parcelize
 data class Launch(
 		@SerializedName("flight_number") val flightNumber: Int?,
 		@SerializedName("launch_year") val launchYear: String?,

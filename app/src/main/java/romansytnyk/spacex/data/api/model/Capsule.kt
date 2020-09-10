@@ -15,15 +15,10 @@ data class Capsule(
 		@SerializedName("sidewall_angle_deg") val sidewallAngleDeg: Int?,
 		@SerializedName("orbit_duration_yr") val orbitDurationYr: Double?,
 		@SerializedName("heat_shield") val heatShield: HeatShield?,
-		@SerializedName("thrusters") val thrusters: List<Thruster?>?,
 		@SerializedName("launch_payload_mass") val launchPayloadMass: LaunchPayloadMass?,
 		@SerializedName("launch_payload_vol") val launchPayloadVol: LaunchPayloadVol?,
 		@SerializedName("return_payload_mass") val returnPayloadMass: ReturnPayloadMass?,
-		@SerializedName("return_payload_vol") val returnPayloadVol: ReturnPayloadVol?,
-		@SerializedName("pressurized_capsule") val pressurizedCapsule: PressurizedCapsule?,
-		@SerializedName("trunk") val trunk: Trunk?,
-		@SerializedName("height_w_trunk") val heightWTrunk: HeightWTrunk?,
-		@SerializedName("diameter") val diameter: Diameter?
+		@SerializedName("return_payload_vol") val returnPayloadVol: ReturnPayloadVol?
 )
 
 data class LaunchPayloadMass(
@@ -43,29 +38,6 @@ data class LaunchPayloadVol(
 		@SerializedName("cubic_feet") val cubicFeet: Double?
 )
 
-data class Thruster(
-		@SerializedName("type") val type: String?,
-		@SerializedName("amount") val amount: Int,
-		@SerializedName("pods") val pods: Double?,
-		@SerializedName("fuel_1") val fuel1: String?,
-		@SerializedName("fuel_2") val fuel2: String?,
-		@SerializedName("thrust") val thrust: Thrust?
-)
-
-data class PressurizedCapsule(
-		@SerializedName("payload_volume") val payloadVolume: PayloadVolume?
-)
-
-data class PayloadVolume(
-		@SerializedName("cubic_meters") val cubicMeters: Double?,
-		@SerializedName("cubic_feet") val cubicFeet: Double?
-)
-
-data class HeightWTrunk(
-		@SerializedName("meters") val meters: Double?,
-		@SerializedName("feet") val feet: Double?
-)
-
 data class ReturnPayloadVol(
 		@SerializedName("cubic_meters") val cubicMeters: Double?,
 		@SerializedName("cubic_feet") val cubicFeet: Double?
@@ -74,19 +46,4 @@ data class ReturnPayloadVol(
 data class ReturnPayloadMass(
 		@SerializedName("kg") val kg: Double?,
 		@SerializedName("lb") val lb: Double?
-)
-
-data class Trunk(
-		@SerializedName("trunk_volume") val trunkVolume: TrunkVolume?,
-		@SerializedName("cargo") val cargo: Cargo?
-)
-
-data class Cargo(
-		@SerializedName("solar_array") val solarArray: Double?,
-		@SerializedName("unpressurized_cargo") val unpressurizedCargo: Boolean?
-)
-
-data class TrunkVolume(
-		@SerializedName("cubic_meters") val cubicMeters: Double?,
-		@SerializedName("cubic_feet") val cubicFeet: Double?
 )
